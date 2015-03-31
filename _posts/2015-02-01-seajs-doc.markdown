@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "SeaJS学习笔录 - SeaJS项目实践"
+description: "学习SeaJS，初步了解SeaJS"
+keywords: "SeaJS, CMD, AMD, CommonJS, RequireJS, Node.js"
+date:   2015-02-28 17:26:10
+categories: seajs
+---
