@@ -1,11 +1,11 @@
 # Site settings
 title: Frend
-email: WisdomPig17@gmail.com
+email: frend.wong@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://frend.cc" # the base hostname & protocol for your site
-github_username:  Wisdompig
+github_username:  FrendEr
 
 # Build settings
 markdown: kramdown
