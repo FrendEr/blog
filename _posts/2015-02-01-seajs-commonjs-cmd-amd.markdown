@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "SeaJS学习笔录 - CommonJS、AMD与CMD"
+title:  "前端模块化 - CommonJS、AMD与CMD"
 description: "学习SeaJS，了解前端js模块化编程，CommonJS、AMD与CMD的比较"
 keywords: "SeaJS, CMD, AMD, CommonJS, RequireJS, Node.js"
 date:   2015-02-01 00:06:10
