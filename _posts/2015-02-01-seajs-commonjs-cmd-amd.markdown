@@ -26,16 +26,16 @@ CommonJS是服务器端模块化的规范，Node.js就是基于CommonJS Modules/
 
 根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，在改模块内定义的变量无法被其他模块所读取，除非定义为global对象的属性。
 
-```javascript
+{% highlight javascript %}
 :::under nodejs
 //main.js
 
 global.name = 'Frend';
-```
+{% endhighlight %}
 
 以上定义的name变量可以被所有的模块所读取，但是并不推荐这种方式。输出模块的变量，最好的方式是使用exports(module.exports)对象。关于`exports与module.exports的区别`推荐看[一位全栈码农对exports与module.exports的分析](http://zihua.li/2012/03/use-module-exports-or-exports-in-node/)。如果这篇博文让你还是理解不了，那给出一个更加浅显的说明：exports一般是一个对象，用于挂一堆的方法或者属性，例如一个slider滑动模块，有一堆的控制方法和属性，这种情况下就可以用exports来挂载，而另外一种情况，例如这个模块是叫$G.dom.get，实现和jquery的$()一样的功能，这时候不需要额外的一些乱七八糟的东西，只需要它是个方法，能直接调用，这时就可以使用module.exports了，调用的时候就可以直接通过$get = require( './dom/get' ); $get方法来使用了。
 
-```javascript
+{% highlight javascript %}
 :::under nodejs
 //module_a.js
 
@@ -44,18 +44,18 @@ exports.name = 'Frend';
 exports.say = function() {
     console.log(name);
 }
-```
+{% endhighlight %}
 
 使用require方法，加载module_a.js
 
-```javascript
+{% highlight javascript %}
 :::under nodejs
 //main.js
 
 var module_a = require('./module_a.js');    //同步加载模块，加载完再执行后面的代码
 
 module_a.say(); //Frend
-```
+{% endhighlight %}
 
 <br/>
 
@@ -78,16 +78,16 @@ AMD（Asynchronous Module Definition）规范则是异步加载模块，即模�
 `factory` 一个模块需要执行一次的函数或者是分配了模块属性的的对象。
 
 * 创建模块标识为alpha的模块，依赖于require，export，和标识为beta的模块
-```javascript
+{% highlight javascript %}
 define('alpha', ['require', 'exports', 'beta'], function(require, exports, beta) {
     export.verb = function() {
         return beta.verb();
     }
 });
-```
+{% endhighlight %}
 
 * 一个返回对象字面量的异步模块
-```javascript
+{% highlight javascript %}
 define(['alpha'], function(alpha) {
     return {
         verb : function() {
@@ -95,53 +95,53 @@ define(['alpha'], function(alpha) {
         }
     }
 });
-```
+{% endhighlight %}
 
 * 无依赖模块可以直接使用对象字面量来定义
-```javascript
+{% highlight javascript %}
 define({
     add : function(x, y) {
         return x + y;
     }
 });
-```
+{% endhighlight %}
 
 * 兼容CommonJS的写法
-```javascript
+{% highlight javascript %}
 define(function(require, exports, module) {
     var a = require('a'),
         b = require('b');
 
     exports.action = function(){};
 });
-```
+{% endhighlight %}
 
 <br/>
 
 >###2.2 AMD的factory中的require参数
 
 * require(String)
-```javascript
+{% highlight javascript %}
 define(function(require) {
     var a = require('a');   //加载模块a
 });
-```
+{% endhighlight %}
 
 * require(Array, Function)
-```javascript
+{% highlight javascript %}
 define(function(require) {
     require(['a', 'b'], function(a, b) {    //加载模块a b 使用
         //依赖 a b 模块的运行代码
     }); 
 });
-```
+{% endhighlight %}
 
 * require.toUrl(Url)
-```javascript
+{% highlight javascript %}
 define(function(require){
     var temp = require.toUrl('./temp/a.html');  //加载页面
 });
-```
+{% endhighlight %}
 
 <br/>
 
@@ -163,28 +163,28 @@ CMD（Common Module Definition）规范是SeaJS遵循的规范，明确了模块
 `factory`可以是对象、字符串或者函数
 
 * 定义JSON数据模块
-```javascript
+{% highlight javascript %}
 define({'foo': 'bar'});
-```
+{% endhighlight %}
 
 * 通过字符串定义模板模块
-```javascript
+{% highlight javascript %}
 define('this is {{data}}.');
-```
+{% endhighlight %}
 
 * factory为函数的时候，表示模块的构造方法，执行构造方法便可以得到模块向外提供的接口
-```javascript
+{% highlight javascript %}
 define(function(require, exports, module) {
     //模块代码
 });
-```
+{% endhighlight %}
 
 * 当拥有两个以上参数时
-```javascript
+{% highlight javascript %}
 define('module', ['module1', 'module2'], function(require, exports, module) {
     //模块代码
 });
-```
+{% endhighlight %}
 
 从上面代码对比来看，CMD与AMD规范在define函数上用法不相同。
 
@@ -193,55 +193,55 @@ define('module', ['module1', 'module2'], function(require, exports, module) {
 >###3.2 CMD的factory中的require参数
 
 * `require(id);`接受模块标识作为唯一的参数，用来获取其他模块提供的接口
-```javascript
+{% highlight javascript %}
 define(function(require, exports) {
     var a = require('./a');
     
     a.doSomething();
 });
-```
+{% endhighlight %}
 
 * `require.async(id, callback?);` require是同步往下执行的，需要的异步加载模块可以使用 require.async 来进行加载
-```javascript
+{% highlight javascript %}
 define(function(require, exports, module) {
     require.async('.a', function(a) {
         a.doSomething();
     });
 });
-```
+{% endhighlight %}
 
 <br/>
 
 >###3.3 CMD的factory中的exports参数
 
 * exports用来向外提供模块接口
-```javascript
+{% highlight javascript %}
 define(function(require, exports) {
     exports.foo = 'bar';    //向外提供的属性
     exports.do = function(){};  //向外提供的方法
 });
-```
+{% endhighlight %}
 
 * 使用return直接向外提供接口
-```javascript
+{% highlight javascript %}
 define(function(require, exports) {
     return{
         foo: 'bar',    //向外提供的属性
         do: function(){}   //向外提供的方法
     }
 });
-```
+{% endhighlight %}
 
 * 简化为直接对象字面量的形式
-```javascript
+{% highlight javascript %}
 define({
     foo: 'bar',     //向外提供的属性
     do: function(){}    //向外提供的方法
 });
-```
+{% endhighlight %}
 
 * 与nodeJS中一样需要注意的情况
-```javascript
+{% highlight javascript %}
 //以下方式是错误的
 define(function(require, exports) {
     exports = {
@@ -257,7 +257,7 @@ define(function(require, exports, module) {
         do: function(){}   //向外提供的方法
     }
 });
-```
+{% endhighlight %}
 
 <br/>
 
@@ -265,12 +265,12 @@ define(function(require, exports, module) {
 
 * module 是factory的第三个参数，为一个对象，上面存储了一些与当前模块相关联的属性与方法
 
-```javascript
+{% highlight javascript %}
 module.id 为模块的唯一标识。
 module.uri 根据模块系统的路径解析规则得到模块的绝对路径。
 module.dependencies 表示模块的依赖。
 module.exports 当前模块对外提供的接口。
-```
+{% endhighlight %}
 
 <br/>
 
@@ -290,7 +290,7 @@ AMD与CMD都是为了实现javascript的模块化开发，特别是在浏览器�
 
 * CMD推崇依赖就近，可以把依赖写进你的代码中的任意一行
 
-```javascript
+{% highlight javascript %}
 // CMD
 define(function(require, exports, module) {
     var a = require('./a');
@@ -300,13 +300,13 @@ define(function(require, exports, module) {
     b.doSomething()
     // ...
 });
-```
+{% endhighlight %}
 
 代码在运行时，首先是不知道依赖的，需要遍历所有的require关键字，找出后面的依赖。具体做法是将function toString后，用正则匹配出require关键字后面的依赖。显然，这是一种牺牲性能来换取更多开发便利的方法。
 
 * AMD推崇依赖前置，在解析和执行当前模块之前，模块作者必须指明当前模块所依赖的模块
 
-```javascript
+{% highlight javascript %}
 // AMD
 define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
     a.doSomething()
@@ -314,16 +314,15 @@ define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
     b.doSomething()
     // ...
 });
-```
+{% endhighlight %}
 
 代码在一旦运行到此处，能立即知晓依赖。而无需遍历整个函数体找到它的依赖，因此性能有所提升，缺点就是开发者必须显式得指明依赖——这会使得开发工作量变大，比如：当你写到函数体内部几百上千行的时候，忽然发现需要增加一个依赖，你不得不回到函数顶端来将这个依赖添加进数组。
 
 对比
-<pre>
+
 || *方案* || *优势* || *劣势* || *特点* ||
-||  AMD  || 速度快 || 会浪费资源 || 预先加载所有的依赖，直到使用的时候才执行
-||  CMD || 只有真正需要才加载依赖 || 性能较差 || 直到使用的时候才定义依赖
-</pre>
+|| AMD || 速度快 || 会浪费资源 || 预先加载所有的依赖，直到使用的时候才执行
+|| CMD || 只有真正需要才加载依赖 || 性能较差 || 直到使用的时候才定义依赖
 
 
 
