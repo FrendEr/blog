@@ -17,7 +17,8 @@ categories: web components
 
 ####shadow dom
 
-<hr/>
+<br/>
+<br/>
 
 ##web components相关
 
@@ -25,7 +26,8 @@ categories: web components
 
 ####html template element
 
-<hr/>
+<br/>
+<br/>
 
 ##资源
 
