@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "compass + sass"
+title:  "Compass + Sass"
 description: "sass是一种css预处理语言，而compass是使用sass的利器，包括兼容、拓展、编译等处理"
 keywords: "sass, compass, css"
 date:   2015-06-30 01:37:00
