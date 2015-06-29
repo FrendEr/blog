@@ -24,12 +24,12 @@ categories: css
 
 ##compass
 
-compass是什么？compass可以说是为了sass而生的，跟sass进行着紧密的配合，更有一种说法是compass相对于sass，就是jquery相对于javascript。compass可以让我们使用sass来写样式代码时不必要为了兼容而写过多的重复代码，同时提供了一些内置的模板供我们使用，例如reset、css3、layout等等。compass还有一个功能就是可以作为一个运行时环境以及构建工具使用，给我们在进行叶面重构时带来巨大的方便。
-* 说到上面的内容也顺便说下两点：
+compass是什么？compass可以说是为了sass而生的，跟sass进行着紧密的配合，更有一种说法是compass相对于sass，就是jquery相对于javascript。compass可以让我们使用sass来写样式代码时不必要为了兼容而写过多的重复代码，同时提供了一些内置的模板供我们使用，例如reset、css3、layout等等。compass还有一个功能就是可以作为一个运行时环境以及构建工具使用，给我们在进行页面重构时带来巨大的方便。
+
+#### 说到上面的内容也顺便说下两点：
 - 现在公司的触屏项目用的是less来进行样式开发的，解决多浏览器兼容问题使用的是grunt的一个叫做grunt-autoprefix的插件；
 - compass有一个比较好用的功能就是css sprite，而grunt也有这类型的插件，例如grunt-imagine
-*
-这里也不细讲用法，推荐一些链接：
 
+这里也不细讲用法，推荐一些链接：
 
 - [compass官网](http://compass-style.org/)
