@@ -1,0 +1,12 @@
+{
+	"author": "Frend Wong",
+	"email": "Wisdompig17@gmail.com",
+	"url": "www.frender.wang",
+	"name": "frend",
+	"version": "0.1.0",  
+	"devDependencies": {  
+		"grunt": "~0.4.1",
+		"grunt-contrib-uglify": "~0.2.2",
+		"grunt-contrib-cssmin": "v0.7.0"
+	}
+}  
