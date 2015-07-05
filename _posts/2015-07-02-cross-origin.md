@@ -53,6 +53,11 @@ categories: javascript
 
 目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出`jsonp`、`cors`与`postMessage`三种的测试例子。
 
+## 测试环境
+- node.js  ~0.12.0
+- express  ~4.12.1
+- jade     ~1.9.2
+
 ##1. JSONP
 
 JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子了，因为我也是看了别人的文章才理解的，直接推荐一篇[讲得很清晰的博文](http://kb.cnblogs.com/page/139725/)。了解后，就开始本地的代码测试吧。
