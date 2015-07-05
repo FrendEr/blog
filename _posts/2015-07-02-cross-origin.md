@@ -18,15 +18,73 @@ categories: javascript
 		<th>是否允许通讯</th>
 	</tr>
 	<tr>
-		<td style="padding: 3px 10px;">www.a.com/a.js</td>
-		<td style="padding: 3px 10px;">www.a.com/b.js</td>
-		<td style="padding: 3px 10px;">同一域名下</td>
-		<td style="padding: 3px 10px;">允许</td>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com/b.js</td>
+		<td style="padding: 3px 10px;text-align: center;">同一域名</td>
+		<td style="padding: 3px 10px;text-align: center;">允许</td>
+	</tr>
+	<tr>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com:8080/b.js</td>
+		<td style="padding: 3px 10px;text-align: center;">同一域名，端口不同</td>
+		<td style="padding: 3px 10px;text-align: center;">不允许</td>
+	</tr>
+	<tr>
+		<td style="padding: 3px 10px;text-align: center;">http://www.a.com/a.js</td>
+		<td style="padding: 3px 10px;text-align: center;">https://www.a.com/b.js</td>
+		<td style="padding: 3px 10px;text-align: center;">同一域名，协议不同</td>
+		<td style="padding: 3px 10px;text-align: center;">不允许</td>
+	</tr>
+	<tr>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
+		<td style="padding: 3px 10px;text-align: center;">blog.a.com/b.js</td>
+		<td style="padding: 3px 10px;text-align: center;">一级域名相同，二级域名不同</td>
+		<td style="padding: 3px 10px;text-align: center;">不允许</td>
+	</tr>
+	<tr>
+		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
+		<td style="padding: 3px 10px;text-align: center;">www.b.com/b.js</td>
+		<td style="padding: 3px 10px;text-align: center;">不同域名下</td>
+		<td style="padding: 3px 10px;text-align: center;">不允许</td>
 	</tr>
 </table>
 
+目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出jsonp、cors与postMessage三种的测试例子。
+
 ##1. JSONP
 
+JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子了，因为我也是看了别人的文章才理解的，直接推荐一篇[讲得很清晰的博文](http://kb.cnblogs.com/page/139725/)。了解后，就开始本地的代码测试吧。
+
+#### 本地模拟跨域
+
+本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（host配置中其实也是指向127.0.0.1，但端口是80）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我表示也不理解。
+<br/>
+
+既然通过本地host配置域名再请求ip不算跨域，那我只能改变思路了，那就换个端口吧。所以我在本地起了两个基于node的server，但端口不一样来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：
+
+- server1: localhost:3001，作为响应端
+
+响应端代码：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/res-code.png)
+
+响应端启动log：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/res-log.png)
+
+- server2: localhost:3000，作为请求端
+
+请求端代码：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-code.png)
+
+请求端启动log：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-log.png)
+
+- 浏览器请求及响应
+
+![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-browser.png)
 
 ##2. CORS
 
