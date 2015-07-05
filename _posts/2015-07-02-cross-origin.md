@@ -12,8 +12,8 @@ categories: javascript
 - 什么情况算跨域？
 <table>
 	<tr>
-		<th>URL1</th>
-		<th>URL2</th>
+		<th>request url</th>
+		<th>response url</th>
 		<th>说明</th>
 		<th>是否允许通讯</th>
 	</tr>
@@ -44,7 +44,7 @@ categories: javascript
 	<tr>
 		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
 		<td style="padding: 3px 10px;text-align: center;">www.b.com/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">不同域名下</td>
+		<td style="padding: 3px 10px;text-align: center;">不同域名</td>
 		<td style="padding: 3px 10px;text-align: center;">不允许</td>
 	</tr>
 </table>
