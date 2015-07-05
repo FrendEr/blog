@@ -11,10 +11,6 @@ categories: javascript
 
 - 什么情况算跨域？
 <table align="center">
-	<col width="100px"></col>
-	<col width="100px"></col>
-	<col width="100px"></col>
-	<col width="100px"></col>
 	<tr>
 		<th>URL1</th>
 		<th>URL2</th>
