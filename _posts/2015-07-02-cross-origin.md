@@ -10,7 +10,7 @@ categories: javascript
 跨域是web开发过程中经常会遇见的一种问题，因为javascript的同源策略的限制，a.com域名下是无法操作b.com下的对象或者调用接口的。
 
 - 什么情况算跨域？
-<table style="text-align: center;">
+<table>
 	<tr>
 		<th>URL1</th>
 		<th>URL2</th>
