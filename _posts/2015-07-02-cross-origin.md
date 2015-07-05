@@ -49,7 +49,9 @@ categories: javascript
 	</tr>
 </table>
 
-目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出jsonp、cors与postMessage三种的测试例子。
+<br/>
+
+目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出`jsonp`、`cors`与`postMessage`三种的测试例子。
 
 ##1. JSONP
 
@@ -57,7 +59,7 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 #### 本地模拟跨域
 
-本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（host配置中其实也是指向127.0.0.1，但端口是80）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我表示也不理解。
+本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（这个是nginx启动的一个静态资源server，端口是80，host配置中指向127.0.0.1）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我也不太理解。
 <br/>
 
 既然通过本地host配置域名再请求ip不算跨域，那我只能改变思路了，那就换个端口吧。所以我在本地起了两个基于node的server，但端口不一样来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：
