@@ -67,7 +67,7 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（这个是nginx启动的一个静态资源server，端口是80，host配置中指向127.0.0.1）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我也不太理解。
 <br/>
 
-既然通过本地host配置域名再请求ip不算跨域，那我只能改变思路了，那就换个端口吧。所以我在本地起了两个基于node的server，但端口不一样来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：
+既然上面的情况不算跨域，那我只能起两个不同端口的server了。所以我在本地起了两个基于node的server，但端口分别为3000合3001，来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：
 
 - server1: localhost:3001，作为响应端
 
@@ -89,7 +89,7 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-log.png)
 
-- 浏览器请求及响应
+- 浏览器访问localhost:3000，响应如下：
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-browser.png)
 
