@@ -10,8 +10,20 @@ categories: javascript
 跨域是web开发过程中经常会遇见的一种问题，因为javascript的同源策略的限制，a.com域名下是无法操作b.com下的对象或者调用接口的。
 
 - 什么情况算跨域？
-|| *URL1* || *URL2* || *说明* || *是否允许通讯* ||
-|| www.a.com/a.js || www.a.com/b.js || 同一域名下 || 允许 ||
+<table>
+	<tr>
+		<th>URL1</th>
+		<th>URL2</th>
+		<th>说明</th>
+		<th>是否允许通讯</th>
+	</tr>
+	<tr>
+		<td>www.a.com/a.js</td>
+		<td>www.a.com/b.js</td>
+		<td>同一域名下</td>
+		<td>允许</td>
+	</tr>
+</table>
 
 ##1. JSONP
 
