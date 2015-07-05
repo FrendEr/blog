@@ -95,9 +95,7 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 <br/>
 
-[下载JSONP例子源码](https://github.com/FrendEr/jsonp)
-
-<br/>
+[☞下载JSONP例子源码☜](https://github.com/FrendEr/jsonp)
 
 JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需要配合后台定义好的接口。但是也有缺点，就是只支持GET的请求方式，如果需要使用POST或者传输大量的数据的时候，那我们就只能选择其他方式了，例如下面介绍的[CORS](#CORS)。
 
