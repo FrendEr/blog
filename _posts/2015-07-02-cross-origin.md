@@ -117,7 +117,7 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 
 请求代码：
 
-![image](https://frender.github.io/blog/images/post/cross-origin/cors/rep-code.png)
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/req-code.png)
 
 浏览器访问http://localhost:3000，响应如下：
 
@@ -129,7 +129,7 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 
 请求代码：
 
-![image](https://frender.github.io/blog/images/post/cross-origin/cors/rep-code.png)
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/req-code.png)
 
 浏览器访问http://localhost:3000，响应如下：
 
