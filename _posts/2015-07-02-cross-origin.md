@@ -99,7 +99,7 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 <br/>
 
-[☞下载JSONP例子源码☜](https://github.com/FrendEr/jsonp)
+[☞下载JSONP例子源码☜](https://github.com/FrendEr/Cross-Origin)
 
 #### JSONP总结
 
@@ -141,6 +141,10 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png)
 
+[☞下载JSONP例子源码☜](https://github.com/FrendEr/Cross-Origin)
+
+<br/>
+
 #### CORS总结
 
 CORS在使用起来非常方便，但也有缺点。
@@ -156,4 +160,30 @@ CORS提供了一种简易的跨域请求方案，但是并没有为安全访问�
 <br/>
 
 ##3. postMessage
+
+postMessage是html5引入的message的API，可以更加方便、有效、安全的解决iframe嵌套跨域问题。详情见[postMessage使用文档 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage)。
+
+- 主页面
+
+![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/parent-code.png)
+
+- iframe页面
+
+![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/iframe-code.png)
+
+- 浏览器访问http://localhost:3000，响应如下：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/browser.png)
+
+[☞下载JSONP例子源码☜](https://github.com/FrendEr/Cross-Origin)
+
+<br/>
+
+## postMessage总结
+
+postMessage使用非常简单，但是在浏览器支持上对于IE6-7存在不足，如下图：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/support.png)
+
+但是现代浏览器对于使用postMessage还是非常有效的，特别是在移动端。
 
