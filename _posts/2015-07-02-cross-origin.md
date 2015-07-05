@@ -139,6 +139,8 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 
 <br/>
 
+#### CORS总结
+
 CORS在使用起来非常方便，但也有缺点。
 
 - ① 兼容性，下图可见，对于需要兼容IE6-7的网站来说，这种方案还是存在着不满足需求的情况。但是对于现代浏览器，特别是在移动端可以放心使用。
@@ -146,8 +148,6 @@ CORS在使用起来非常方便，但也有缺点。
 ![image](https://frender.github.io/blog/images/post/cross-origin/cors/support.png)
 
 - ② 安全性
-
-#### CORS总结
 
 CORS提供了一种简易的跨域请求方案，但是并没有为安全访问提供足够的保障机制，例如上面`Access-Control-Allow-Origin: *`的情况，所有使用者都可以请求改接口，这给服务端带来了巨大的安全隐患。如果需要保障安全，请参考[OAuth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)。
 
