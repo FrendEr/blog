@@ -93,8 +93,21 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-browser.png)
 
+<br/>
+
+[下载JSONP例子源码](https://github.com/FrendEr/jsonp)
+
+<br/>
+
+JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需要配合后台定义好的接口。但是也有缺点，就是只支持GET的请求方式，如果需要使用POST或者传输大量的数据的时候，那我们就只能选择其他方式了，例如下面介绍的[CORS](#CORS)。
+
 ##2. CORS
 
+CORS(Cross-Origin Resource Sharing)即跨域资源共享，也是一种实现跨域访问的方法。
+
+<br/>
+
+CORS的实现原理很简单，只需要在响应端的头信息配置一个`Access-Control-Allow-Origin`的响应信息即可。
 
 ##3. postMessage
 
