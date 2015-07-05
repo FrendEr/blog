@@ -53,10 +53,14 @@ categories: javascript
 
 目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出`jsonp`、`cors`与`postMessage`三种的测试例子。
 
+<br/>
+
 ## 测试环境
 - node.js  ~0.12.0
 - express  ~4.12.1
 - jade     ~1.9.2
+
+<br/>
 
 ##1. JSONP
 
@@ -136,8 +140,6 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 浏览器访问http://localhost:3000，响应如下：
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png)
-
-<br/>
 
 #### CORS总结
 
