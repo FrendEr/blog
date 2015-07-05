@@ -99,13 +99,55 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需要配合后台定义好的接口。但是也有缺点，就是只支持GET的请求方式，如果需要使用POST或者传输大量的数据的时候，那我们就只能选择其他方式了，例如下面介绍的[CORS](#CORS)。
 
+<br/>
+
 ##2. CORS
 
 CORS(Cross-Origin Resource Sharing)即跨域资源共享，也是一种实现跨域访问的方法。
 
+CORS的实现原理很简单，只需要在响应端的头信息配置一个`Access-Control-Allow-Origin`的响应信息即可。
+
+- a) 没有配置`Access-Control-Allow-Origin`时，http://localhost:3000向http://localhost:3001发起ajax请求，跨域请求失败。
+
+- b) 设置`Access-Control-Allow-Origin: http://localhost:3000`：
+
+响应代码：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-code.png)
+
+请求代码：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/rep-code.png)
+
+浏览器访问http://localhost:3000，响应如下：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png)
+
+- c) 设置`Access-Control-Allow-Origin: *`，注意这里的`*`是指所有来源都可以调用该接口：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-code2.png)
+
+请求代码：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/rep-code.png)
+
+浏览器访问http://localhost:3000，响应如下：
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png)
+
 <br/>
 
-CORS的实现原理很简单，只需要在响应端的头信息配置一个`Access-Control-Allow-Origin`的响应信息即可。
+CORS在使用起来非常方便，但也有缺点。
+
+- ① 兼容性，下图可见，对于需要兼容IE6-7的网站来说，这种方案还是存在着不满足需求的情况。但是对于现代浏览器，特别是在移动端可以放心使用。
+
+![image](https://frender.github.io/blog/images/post/cross-origin/cors/support.png)
+
+- ② 安全性
+
+CORS提供了一种简易的跨域请求方案，但是并没有为安全访问提供足够的保障机制，例如上面`Access-Control-Allow-Origin: *`的情况，所有使用者都可以请求改接口，这给服务端带来了巨大的安全隐患。如果需要保障安全，请参考[OAuth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)。
+
+<br/>
 
 ##3. postMessage
 
