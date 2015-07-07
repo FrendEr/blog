@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "html5 history"
+title:  "Html5 History API"
 description: ""
 keywords: ""
 date:   2015-07-06 01:12:00

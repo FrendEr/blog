@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "mootools更适合大型项目的思考"
+title:  "mootools比jquery更适合大型项目的思考"
 description: ""
 keywords: ""
 date:   2015-07-02 17:24:00
