@@ -20,7 +20,7 @@ CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
 
 <br/>
 
-###1. CommonJS规范
+### 1. CommonJS规范
 
 CommonJS是服务器端模块化的规范，Node.js就是基于CommonJS Modules/1.0。
 
@@ -59,7 +59,7 @@ module_a.say(); //Frend
 
 <br/>
 
-###2. AMD规范
+### 2. AMD规范
 从[#CommonJS规范#](#commonjs)已经初步了解了CommonJS，它加载模块时是同步的，也就是说，只有加载完成才会开始执行后面的操作。由于Node.js主要是用于服务器编程，模块文件一般是存放在服务器硬盘，所以加载会非常的快，不用考虑像浏览器请求脚本时造成阻塞等的情况，所以CommonJS规范比较适用。但是，如果是在浏览器，要从服务器加载模块，带宽是主要的瓶颈，所以AMD规范提倡的异步加载模块的方式比较适用。
 
 AMD（Asynchronous Module Definition）规范则是异步加载模块，即模块的加载不会影响后面语句的运行。所有依赖于某些模块的语句均放在回调函数中执行。
@@ -67,9 +67,9 @@ AMD（Asynchronous Module Definition）规范则是异步加载模块，即模�
 
 <br/>
 
->###2.1 AMD的全局变量 —— define函数
+>### 2.1 AMD的全局变量 —— define函数
 
-####define(id?, dependencies?, factory)
+#### define(id?, dependencies?, factory)
 
 `id` 为可选参数，字符串类型，表示当前模块的标识。
 
@@ -118,7 +118,7 @@ define(function(require, exports, module) {
 
 <br/>
 
->###2.2 AMD的factory中的require参数
+>### 2.2 AMD的factory中的require参数
 
 * require(String)
 {% highlight javascript %}
@@ -132,7 +132,7 @@ define(function(require) {
 define(function(require) {
     require(['a', 'b'], function(a, b) {    //加载模块a b 使用
         //依赖 a b 模块的运行代码
-    }); 
+    });
 });
 {% endhighlight %}
 
@@ -145,7 +145,7 @@ define(function(require){
 
 <br/>
 
-###3. CMD规范
+### 3. CMD规范
 CMD（Common Module Definition）规范是SeaJS遵循的规范，明确了模块的基本书写格式和基本交互规则。
 
 在该规范中，一个模块就是一个文件。
@@ -154,7 +154,7 @@ CMD（Common Module Definition）规范是SeaJS遵循的规范，明确了模块
 
 >###3.1 CMD的全局变量 —— define函数
 
-####define(id?, dependencies?, factory)
+#### define(id?, dependencies?, factory)
 
 `id`为可选参数，字符串类型，表示当前模块的标识。
 
@@ -190,13 +190,13 @@ define('module', ['module1', 'module2'], function(require, exports, module) {
 
 <br/>
 
->###3.2 CMD的factory中的require参数
+>### 3.2 CMD的factory中的require参数
 
 * `require(id);`接受模块标识作为唯一的参数，用来获取其他模块提供的接口
 {% highlight javascript %}
 define(function(require, exports) {
     var a = require('./a');
-    
+
     a.doSomething();
 });
 {% endhighlight %}
@@ -212,7 +212,7 @@ define(function(require, exports, module) {
 
 <br/>
 
->###3.3 CMD的factory中的exports参数
+>### 3.3 CMD的factory中的exports参数
 
 * exports用来向外提供模块接口
 {% highlight javascript %}
@@ -261,7 +261,7 @@ define(function(require, exports, module) {
 
 <br/>
 
->###3.4 CMD的factory中的module参数
+>### 3.4 CMD的factory中的module参数
 
 * module 是factory的第三个参数，为一个对象，上面存储了一些与当前模块相关联的属性与方法
 
@@ -274,7 +274,7 @@ module.exports 当前模块对外提供的接口。
 
 <br/>
 
-###4. AMD与CMD的区别
+### 4. AMD与CMD的区别
 
 下面是玉伯对于 AMD 与 CMD 区别的解释：
 
@@ -323,11 +323,3 @@ define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
 || *方案* || *优势* || *劣势* || *特点* ||
 || AMD || 速度快 || 会浪费资源 || 预先加载所有的依赖，直到使用的时候才执行
 || CMD || 只有真正需要才加载依赖 || 性能较差 || 直到使用的时候才定义依赖
-
-
-
-
-
-
-
-

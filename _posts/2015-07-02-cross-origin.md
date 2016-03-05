@@ -62,7 +62,7 @@ categories: javascript
 
 <br/>
 
-##1. JSONP
+## 1. JSONP
 
 JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子了，因为我也是看了别人的文章才理解的，直接推荐一篇[讲得很清晰的博文](http://kb.cnblogs.com/page/139725/)。了解后，就开始本地的代码测试吧。
 
@@ -107,7 +107,7 @@ JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需
 
 <br/>
 
-##2. CORS
+## 2. CORS
 
 CORS(Cross-Origin Resource Sharing)即跨域资源共享，也是一种实现跨域访问的方法。
 
@@ -159,7 +159,7 @@ CORS提供了一种简易的跨域请求方案，但是并没有为安全访问�
 
 <br/>
 
-##3. postMessage
+## 3. postMessage
 
 postMessage是html5引入的message的API，可以更加方便、有效、安全的解决iframe嵌套跨域问题。详情见[postMessage使用文档 - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage)。
 
@@ -186,4 +186,3 @@ postMessage使用非常简单，但是在浏览器支持上对于IE6-7存在不�
 ![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/support.png)
 
 但是现代浏览器对于使用postMessage还是非常有效的，特别是在移动端。
-

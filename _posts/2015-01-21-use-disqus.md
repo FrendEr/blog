@@ -9,12 +9,12 @@ categories: blog
 
 博客的大体框架搭好了，没有评论功能感觉太low，果断接入Disqus @。@
 
-###1. Disqus账号
+### 1. Disqus账号
 使用Disqus需要账号，按注册流程走一遍，如果有gmail账号的就直接用gmail登陆也是可以滴。
 注册完，接下来会让你输入你准备使用的二级域名，因为我的域名是frend.cc，我就填了frendcc。
 
 
-###2. 选择博客的搭建平台
+### 2. 选择博客的搭建平台
 选择*Settings* -> *Install*，会出现九个可以选择的平台。
 
 但是。。。。为何没有Jekyll？于是我全部点了一遍，最后选择了*Universal Code*，为什么？因为他会给你生成一段内嵌的脚本（使用过第三方插件或者服务的应该都懂的其中的原因）
@@ -40,7 +40,7 @@ categories: blog
 将以上代码放到你的项目代码中，大功告成！
 
 
-###3. 填坑
+### 3. 填坑
 上面做的事情都是对的，而且很简单有木有，但是以上的代码会报错，什么错？F12打开的Chrome的控制台，会发现
 
 {% highlight javascript %}
@@ -72,23 +72,3 @@ frendcc.disqus.com/embed.js 指向 a.disqus.com/embed.js
 {% endhighlight %}
 
 以上是简单介绍怎样在博客接入Disqus，由于目前认识有限，一些描述或者方法上可能会不太准确，欢迎指正。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
