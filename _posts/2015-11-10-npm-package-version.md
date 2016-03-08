@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Npm Package Version"
+title:  "NPM 版本管理"
 description: "npm package version description"
 keywords: "npm, version"
 date:   2015-11-10 00:00:00
