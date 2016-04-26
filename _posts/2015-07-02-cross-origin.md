@@ -10,44 +10,20 @@ categories: javascript
 跨域是web开发过程中经常会遇见的一种问题，因为javascript的同源策略的限制，a.com域名下是无法操作b.com下的对象或者调用接口的。
 
 - 什么情况算跨域？
-<table>
-	<tr>
-		<th>request url</th>
-		<th>response url</th>
-		<th>说明</th>
-		<th>是否允许通讯</th>
-	</tr>
-	<tr>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">同一域名</td>
-		<td style="padding: 3px 10px;text-align: center;">允许</td>
-	</tr>
-	<tr>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com:8080/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">同一域名，端口不同</td>
-		<td style="padding: 3px 10px;text-align: center;">不允许</td>
-	</tr>
-	<tr>
-		<td style="padding: 3px 10px;text-align: center;">http://www.a.com/a.js</td>
-		<td style="padding: 3px 10px;text-align: center;">https://www.a.com/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">同一域名，协议不同</td>
-		<td style="padding: 3px 10px;text-align: center;">不允许</td>
-	</tr>
-	<tr>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
-		<td style="padding: 3px 10px;text-align: center;">blog.a.com/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">一级域名相同，二级域名不同</td>
-		<td style="padding: 3px 10px;text-align: center;">不允许</td>
-	</tr>
-	<tr>
-		<td style="padding: 3px 10px;text-align: center;">www.a.com/a.js</td>
-		<td style="padding: 3px 10px;text-align: center;">www.b.com/b.js</td>
-		<td style="padding: 3px 10px;text-align: center;">不同域名</td>
-		<td style="padding: 3px 10px;text-align: center;">不允许</td>
-	</tr>
-</table>
+
+|-----------------+------------+-----------------+----------------|
+| request url | response url | 说明 | 是否允许通讯 |
+|-----------------|:-----------|:---------------:|---------------:|
+| www.a.com/a.js | www.a.com/b.js | 同一域名 | 允许 |
+|-----------------+------------+-----------------+----------------|
+| www.a.com/a.js | www.a.com:8080/b.js | 同一域名，端口不同 | 不允许 |
+|-----------------+------------+-----------------+----------------|
+| http://www.a.com/a.js | https://www.a.com/b.js | 同一域名，协议不同 | 不允许 |
+|-----------------+------------+-----------------+----------------|
+| www.a.com/a.js | blog.a.com/b.js | 一级域名相同，二级域名不同 | 不允许 |
+|-----------------+------------+-----------------+----------------|
+| www.a.com/a.js | www.b.com/b.js | 不同域名 | 不允许 |
+|-----------------+------------+-----------------+----------------|
 
 <br/>
 
@@ -56,9 +32,10 @@ categories: javascript
 <br/>
 
 ## 测试环境
-- node.js  ~0.12.0
-- express  ~4.12.1
-- jade     ~1.9.2
+
+* node.js  ~0.12.0
+* express  ~4.12.1
+* jade     ~1.9.2
 
 <br/>
 

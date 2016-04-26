@@ -22,7 +22,7 @@ categories: npm
 
 - **v1.0.1 表示 Patch release(补丁发布)** : make some backwards-compatible bug fixes
 
-```js
+``` javascript
 
 // npm version cmd
 npm version patch
@@ -34,7 +34,7 @@ v1.0.0 ===> v1.0.1
 
 - **v1.1.0 表示 Minor release(小迭代版本发布)** : add new features but don't break existing features. It's `backwards compatibility`.
 
-```js
+``` javascript
 
 // npm version cmd
 npm version minor
@@ -46,7 +46,7 @@ v1.0.1 ===> v1.1.0
 
 - **v2.0.0 表示 Major release(主版本发布)** : changes which `break backwards compatibility`.
 
-```js
+``` javascript
 
 // npm version cmd
 npm version major
@@ -65,7 +65,7 @@ v1.1.0 ===> v2.0.0
 
 > 执行后x.y.z中的z自动加1
 
-```
+``` javascript
 
 npm version patch
 
@@ -75,7 +75,7 @@ npm version patch
 
 > 执行后x.y.z中的y自动加1，z重置为0
 
-```
+``` javascript
 
 npm version minor
 
@@ -85,7 +85,7 @@ npm version minor
 
 > 执行后x.y.z中的x自动加1，y和z重置为0
 
-```
+``` javascript
 
 npm version major
 
@@ -97,50 +97,74 @@ npm version major
 ## Install package时，`常见`的版本号匹配规则
 
 - **>1.0.1**
-```
+
+``` javascript
+
 >1.0.1 (1.0.2, 1.0.3 etc)
+
 ```
 
 
 - **>=1.0.1**
-```
+
+``` javascript
+
 >=1.0.1 (1.0.1, 1.0.2, 1.0.3 etc)
+
 ```
 
 
 - **<1.0.5**
-```
+
+``` javascript
+
 <1.0.5 (1.0.4, 1.0.3 etc)
+
 ```
 
 
 - **<=1.0.5**
-```
+
+``` javascript
+
 <=1.0.5 (1.0.5, 1.0.4, 1.0.3 etc)
+
 ```
 
 
 - **>1.2.3-alpha.2**
-```
+
+``` javascript
+
 prerelease version, match 1.2.3-alpha.3, 1.2.3-alpha.4 etc, but not match 4.5.6-alpha.3
+
 ```
 
 
 - **1.1.x**
-```
+
+``` javascript
+
 >=1.1.0 && < 1.2.0
+
 ```
 
 
 - **~1.1.4**
-```
+
+``` javascript
+
 >=1.1.4 && <1.2.0
+
 ```
 
 
 - **^1.1.4**
-```
+
+``` javascript
+
 >=1.1.4 && <2.0.0
+
 ```
 
 <br>
