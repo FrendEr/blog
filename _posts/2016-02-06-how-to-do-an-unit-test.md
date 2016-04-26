@@ -273,7 +273,7 @@ instrumentation:
 
 * 运行结果截图（自行运行 `example` 目录内的例子或者使用 [`generator-tman`](https://github.com/FrendEr/generator-tman) 初始化项目）
 
-![运行结果](https://frender.github.io/blog/images/post/how-todo-an-unit-test/result.png)
+![运行结果](https://raw.githubusercontent.com/FrendEr/blog/gh-pages/images/post/how-to-an-unit-test/result.png)
 
 ## 如何启动一个测试
 
