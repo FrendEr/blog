@@ -6,7 +6,7 @@ export default () => {
           <img src="/static/avatar.png" width="200" height="200" />
           <div className="links">
             <div>
-              <h3>Hi, I'm an Front End Developer.</h3>
+              <h3>Hi, call me Frend. I'm an Front End Developer.</h3>
             </div>
             <div>
               <label>Skill: </label>
@@ -23,6 +23,12 @@ export default () => {
             <div>
               <label>Github: </label>
               <a href="https://github.com/FrendEr" target="_blank">https://github.com/FrendEr</a>
+            </div>
+            <div>
+              <label>Contact: </label>
+              <span>
+                <a href="mailto:frend.wong@gmail.com" target="_blank">frend.wong@gmail.com</a> / <a href="mailto:407063692@qq.com" target="_blank">407063692@qq.com</a>
+              </span>
             </div>
             <div>
               <label>Location: </label>

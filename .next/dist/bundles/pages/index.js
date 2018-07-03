@@ -107,7 +107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     className: "jsx-656524494"
   }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
     className: "jsx-656524494"
-  }, "Hi, I'm an Front End Developer.")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+  }, "Hi, call me Frend. I'm an Front End Developer.")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
     className: "jsx-656524494"
   }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", {
     className: "jsx-656524494"
@@ -134,6 +134,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     target: "_blank",
     className: "jsx-656524494"
   }, "https://github.com/FrendEr")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+    className: "jsx-656524494"
+  }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", {
+    className: "jsx-656524494"
+  }, "Contact: "), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("span", {
+    className: "jsx-656524494"
+  }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+    href: "mailto:frend.wong@gmail.com",
+    target: "_blank",
+    className: "jsx-656524494"
+  }, "frend.wong@gmail.com"), " / ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
+    href: "mailto:407063692@qq.com",
+    target: "_blank",
+    className: "jsx-656524494"
+  }, "407063692@qq.com"))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
     className: "jsx-656524494"
   }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", {
     className: "jsx-656524494"
