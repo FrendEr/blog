@@ -16,7 +16,7 @@ export default () => {
                 <span>Webpack</span>
                 <span>Node.js</span>
                 <span>jQuery</span>
-                <span>Modular</span>
+                <span>Vue</span>
                 etc.
               </div>
             </div>
