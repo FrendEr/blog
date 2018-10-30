@@ -125,7 +125,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     className: "jsx-656524494"
   }, "jQuery"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("span", {
     className: "jsx-656524494"
-  }, "Modular"), "etc.")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+  }, "Vue"), "etc.")), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
     className: "jsx-656524494"
   }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("label", {
     className: "jsx-656524494"
