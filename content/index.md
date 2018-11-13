@@ -9,6 +9,6 @@ topLinks:
   - text: "Github"
     href: "https://github.com/FrendEr"
 backgroundClass: "bg-dark-gray"
-copyright: "Frend Wong"
+copyright: "Frend"
 siteId: ""
 ---
