@@ -1,0 +1,14 @@
+---
+siteTitle: "Frend's Blog"
+description: ""
+stylesheets:
+  - "https://unpkg.com/tachyons@4.7.4/css/tachyons.min.css"
+topLinks:
+  - text: "About"
+    href: "/about"
+  - text: "Github"
+    href: "https://github.com/FrendEr"
+backgroundClass: "bg-dark-gray"
+copyright: "Frend Wong"
+siteId: ""
+---

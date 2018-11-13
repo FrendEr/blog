@@ -1,78 +1,49 @@
-export default () => {
+import React from 'react'
+import Page from '../src/components/Page'
+import PagePreview from '../src/components/PagePreview'
+import { formatDate } from '../src/utils/date'
+import { makeUrl, filterPosts } from '../src/utils/content'
+
+import CONFIG from '../content/index.json'
+import SUMMARY_JSON from '../content/summary.json'
+
+function Index(props) {
   return (
     <div>
-      <div className="infos">
-        <div className="avatar">
-          <img src="/static/avatar.png" width="200" height="200" />
-          <div className="links">
-            <div>
-              <h3>Hi, call me Frend. I'm an Front End Developer.</h3>
-            </div>
-            <div>
-              <label>Skill: </label>
-              <div className="skill-list">
-                <span>React</span>
-                <span>Redux</span>
-                <span>Webpack</span>
-                <span>Node.js</span>
-                <span>jQuery</span>
-                <span>Vue</span>
-                etc.
-              </div>
-            </div>
-            <div>
-              <label>Github: </label>
-              <a href="https://github.com/FrendEr" target="_blank">https://github.com/FrendEr</a>
-            </div>
-            <div>
-              <label>Contact: </label>
-              <span>
-                <a href="mailto:frend.wong@gmail.com" target="_blank">frend.wong@gmail.com</a> / <a href="mailto:407063692@qq.com" target="_blank">407063692@qq.com</a>
-              </span>
-            </div>
-            <div>
-              <label>Location: </label>
-              <span>Shenzhen</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <style jsx>{`
-        body {
-          font-family: monospace;
-        }
-        a {
-          color: #007bff;
-        }
-        .infos {
-          padding: 30px 50px;
-        }
-        .avatar img {
-          float: left;
-        }
-        .links {
-          margin-left: 250px;
-        }
-        .links > div {
-          padding: 5px 0;
-        }
-        .links label {
-          display: inline-block;
-          font-weight: bold;
-          width: 80px;
-          text-align: right;
-          padding-right: 10px;
-        }
-        .skill-list {
-          display: inline-block;
-        }
-        .skill-list span {
-          padding: 0 6px;
-          margin-right: 10px;
-          background-color: #cce5ff;
-          color: #004085;
-        }
-      `}</style>
+      <Page
+        siteTitle={`${CONFIG.siteTitle} - Index`}
+        heroTitle={CONFIG.siteTitle}
+        description={CONFIG.description}
+        stylesheets={CONFIG.stylesheets}
+        topLinks={CONFIG.topLinks}
+        backgroundClass={CONFIG.backgroundClass}
+        body={Body({ summaryJson: SUMMARY_JSON })}
+        copyright={CONFIG.copyright}
+        siteId={CONFIG.siteId}
+      />
     </div>
-  );
+  )
 }
+
+function Body(props) {
+  const postList = filterPosts(props.summaryJson)
+  return (
+    <div className="center mw6 pa3 pa4-ns">
+      {postList.map((article, i) => {
+        const href = makeUrl(article)
+        const date = formatDate(article.date)
+        return (
+          <PagePreview
+            title={article.title}
+            preview={article.preview}
+            date={date}
+            href={href}
+            key={i}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
+export default Index

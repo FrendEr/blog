@@ -1,0 +1,71 @@
+{
+  "fileMap": {
+    "content/index.json": {
+      "siteTitle": "Next Blog",
+      "description": "A blog built using next and processmd",
+      "stylesheets": [
+        "https://unpkg.com/tachyons@4.7.4/css/tachyons.min.css"
+      ],
+      "topLinks": [
+        {
+          "text": "Blog",
+          "href": "/"
+        },
+        {
+          "text": "Github",
+          "href": "https://github.com/tscanlin/"
+        }
+      ],
+      "backgroundClass": "bg-dark-gray",
+      "copyright": "Tim Scanlin",
+      "siteId": "",
+      "dir": "content",
+      "base": "index.json",
+      "ext": ".json",
+      "sourceBase": "index.md",
+      "sourceExt": ".md"
+    },
+    "content/posts/2017/first-post.json": {
+      "title": "First post",
+      "date": "2017-06-01T00:00:00.000Z",
+      "preview": "First post!\n\nCheckout github to see my other projects\n\nanother page",
+      "dir": "content/posts/2017",
+      "base": "first-post.json",
+      "ext": ".json",
+      "sourceBase": "first-post.md",
+      "sourceExt": ".md"
+    },
+    "content/custom-post.json": {
+      "title": "Custom post",
+      "date": "2017-06-01T00:00:00.000Z",
+      "page": "post",
+      "paths": [
+        "/custom-post",
+        "/custom-post-alias",
+        "/subpath/custom-post-alias"
+      ],
+      "preview": "An alias\n\nAnd another alias",
+      "dir": "content",
+      "base": "custom-post.json",
+      "ext": ".json",
+      "sourceBase": "custom-post.md",
+      "sourceExt": ".md"
+    },
+    "content/posts/2017/post-two.json": {
+      "title": "Post two",
+      "date": "2017-06-12T00:00:00.000Z",
+      "preview": "Second post!\n\nCheck out GitHub to see my other projects",
+      "dir": "content/posts/2017",
+      "base": "post-two.json",
+      "ext": ".json",
+      "sourceBase": "post-two.md",
+      "sourceExt": ".md"
+    }
+  },
+  "sourceFileArray": [
+    "content/custom-post.md",
+    "content/index.md",
+    "content/posts/2017/first-post.md",
+    "content/posts/2017/post-two.md"
+  ]
+}
