@@ -1,33 +1,5 @@
 {
   "fileMap": {
-    "content/posts/2016/02-06-how-to-do-an-unit-test.json": {
-      "layout": "post",
-      "title": "前端单元测试 - 工具使用与运行配置",
-      "description": "前端单元测试入门学习，工具的使用以及基础运行配置",
-      "keywords": "unit test, chai, mocha, sinon, react, es6",
-      "date": "2016-02-06T00:00:00.000Z",
-      "categories": "unit-test",
-      "preview": "用到的测试工具（框架）\n\n> 俗话说：工欲善其事必先利其器。要做好单元测试，必须有一套好的辅助工具。\n\nMocha\n\n> Mocha 是一个可以运行在 node 环境与 browser",
-      "dir": "content/posts/2016",
-      "base": "02-06-how-to-do-an-unit-test.json",
-      "ext": ".json",
-      "sourceBase": "02-06-how-to-do-an-unit-test.md",
-      "sourceExt": ".md"
-    },
-    "content/posts/2015/06-30-debug-gap.json": {
-      "layout": "post",
-      "title": "移动调试方法总结",
-      "description": "Chrome的截屏、Weinre、路由代理、DebugGap",
-      "keywords": "debuggap, debug, 移动调试, node-webkit, Weinre, 移动调试方法总结",
-      "date": "2015-06-30T22:57:00.000Z",
-      "categories": "debug",
-      "preview": "最近在公司项目一直做着触屏的项目，这里不是要说项目开发的实际内容，而是调试。说到调试，目前有几种方案：\n\n1.",
-      "dir": "content/posts/2015",
-      "base": "06-30-debug-gap.json",
-      "ext": ".json",
-      "sourceBase": "06-30-debug-gap.md",
-      "sourceExt": ".md"
-    },
     "content/index.json": {
       "siteTitle": "Frend's Blog",
       "description": "",
@@ -60,11 +32,25 @@
       "keywords": "SeaJS, CMD, AMD, CommonJS, RequireJS, Node.js",
       "date": "2015-02-01T00:06:10.000Z",
       "categories": "seajs",
-      "preview": "AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。\n\nCMD 是 SeaJS",
+      "preview": "AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。\n\nCMD 是 SeaJS 在推广过程中对模块定义的规范化产出。\n\n--玉伯\n\n第一次听说",
       "dir": "content/posts/2015",
       "base": "02-01-fe-modules.json",
       "ext": ".json",
       "sourceBase": "02-01-fe-modules.md",
+      "sourceExt": ".md"
+    },
+    "content/posts/2015/07-02-cross-origin.json": {
+      "layout": "post",
+      "title": "跨域解决方案(基于nodejs)",
+      "description": "跨域是web开发经常遇到的问题，也是前端开发需要具备的技能之一，目前主流处理跨域的方法有jsonp、cors、postMessage",
+      "keywords": "跨域, jsonp, cors, postMessage",
+      "date": "2015-07-02T01:20:00.000Z",
+      "categories": "javascript",
+      "preview": "",
+      "dir": "content/posts/2015",
+      "base": "07-02-cross-origin.json",
+      "ext": ".json",
+      "sourceBase": "07-02-cross-origin.md",
       "sourceExt": ".md"
     },
     "content/posts/2015/11-10-npm-package-version.json": {
@@ -81,18 +67,32 @@
       "sourceBase": "11-10-npm-package-version.md",
       "sourceExt": ".md"
     },
-    "content/posts/2015/07-02-cross-origin.json": {
+    "content/posts/2015/06-30-debug-gap.json": {
       "layout": "post",
-      "title": "跨域解决方案(基于nodejs)",
-      "description": "跨域是web开发经常遇到的问题，也是前端开发需要具备的技能之一，目前主流处理跨域的方法有jsonp、cors、postMessage",
-      "keywords": "跨域, jsonp, cors, postMessage",
-      "date": "2015-07-02T01:20:00.000Z",
-      "categories": "javascript",
-      "preview": "",
+      "title": "移动调试方法总结",
+      "description": "Chrome的截屏、Weinre、路由代理、DebugGap",
+      "keywords": "debuggap, debug, 移动调试, node-webkit, Weinre, 移动调试方法总结",
+      "date": "2015-06-30T22:57:00.000Z",
+      "categories": "debug",
+      "preview": "最近在公司项目一直做着触屏的项目，这里不是要说项目开发的实际内容，而是调试。说到调试，目前有几种方案：\n\n1.",
       "dir": "content/posts/2015",
-      "base": "07-02-cross-origin.json",
+      "base": "06-30-debug-gap.json",
       "ext": ".json",
-      "sourceBase": "07-02-cross-origin.md",
+      "sourceBase": "06-30-debug-gap.md",
+      "sourceExt": ".md"
+    },
+    "content/posts/2016/02-06-how-to-do-an-unit-test.json": {
+      "layout": "post",
+      "title": "前端单元测试 - 工具使用与运行配置",
+      "description": "前端单元测试入门学习，工具的使用以及基础运行配置",
+      "keywords": "unit test, chai, mocha, sinon, react, es6",
+      "date": "2016-02-06T00:00:00.000Z",
+      "categories": "unit-test",
+      "preview": "用到的测试工具（框架）\n\n> 俗话说：工欲善其事必先利其器。要做好单元测试，必须有一套好的辅助工具。\n\nMocha\n\n> Mocha 是一个可以运行在 node 环境与 browser",
+      "dir": "content/posts/2016",
+      "base": "02-06-how-to-do-an-unit-test.json",
+      "ext": ".json",
+      "sourceBase": "02-06-how-to-do-an-unit-test.md",
       "sourceExt": ".md"
     }
   },

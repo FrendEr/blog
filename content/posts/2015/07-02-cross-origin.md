@@ -11,25 +11,15 @@ categories: javascript
 
 - 什么情况算跨域？
 
-|-----------------+------------+-----------------+----------------|
 | request url | response url | 说明 | 是否允许通讯 |
-|-----------------|:-----------|:---------------:|---------------:|
+|-----------------|:-----------:|:---------------:|---------------:|
 | www.a.com/a.js | www.a.com/b.js | 同一域名 | 允许 |
-|-----------------+------------+-----------------+----------------|
 | www.a.com/a.js | www.a.com:8080/b.js | 同一域名，端口不同 | 不允许 |
-|-----------------+------------+-----------------+----------------|
 | http://www.a.com/a.js | https://www.a.com/b.js | 同一域名，协议不同 | 不允许 |
-|-----------------+------------+-----------------+----------------|
 | www.a.com/a.js | blog.a.com/b.js | 一级域名相同，二级域名不同 | 不允许 |
-|-----------------+------------+-----------------+----------------|
 | www.a.com/a.js | www.b.com/b.js | 不同域名 | 不允许 |
-|-----------------+------------+-----------------+----------------|
-
-<br/>
 
 目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出`jsonp`、`cors`与`postMessage`三种的测试例子。
-
-<br/>
 
 ## 测试环境
 
@@ -46,7 +36,6 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 #### 本地模拟跨域
 
 本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（这个是nginx启动的一个静态资源server，端口是80，host配置中指向127.0.0.1）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我也不太理解。
-<br/>
 
 既然上面的情况不算跨域，那我只能起两个不同端口的server了。所以我在本地起了两个基于node的server，但端口分别为3000和3001，来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：
 
@@ -74,15 +63,12 @@ JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子
 
 ![image](https://frender.github.io/blog/images/post/cross-origin/jsonp/req-browser.png)
 
-<br/>
 
 [☞下载JSONP例子源码☜](https://github.com/FrendEr/Cross-Origin)
 
 #### JSONP总结
 
 JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需要配合后台定义好的接口。但是也有缺点，就是只支持GET的请求方式，如果需要使用POST或者传输大量的数据的时候，那我们就只能选择其他方式了，例如下面介绍的[CORS](#CORS)。
-
-<br/>
 
 ## 2. CORS
 
@@ -120,8 +106,6 @@ CORS的实现原理很简单，只需要在响应端的头信息配置一个`Acc
 
 [☞下载CORS例子源码☜](https://github.com/FrendEr/Cross-Origin)
 
-<br/>
-
 #### CORS总结
 
 CORS在使用起来非常方便，但也有缺点。
@@ -133,8 +117,6 @@ CORS在使用起来非常方便，但也有缺点。
 - ② 安全性
 
 CORS提供了一种简易的跨域请求方案，但是并没有为安全访问提供足够的保障机制，例如上面`Access-Control-Allow-Origin: *`的情况，所有使用者都可以请求改接口，这给服务端带来了巨大的安全隐患。如果需要保障安全，请参考[OAuth2](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)。
-
-<br/>
 
 ## 3. postMessage
 
@@ -153,8 +135,6 @@ postMessage是html5引入的message的API，可以更加方便、有效、安全
 ![image](https://frender.github.io/blog/images/post/cross-origin/postMessage/browser.png)
 
 [☞下载postMessage例子源码☜](https://github.com/FrendEr/Cross-Origin)
-
-<br/>
 
 ## postMessage总结
 

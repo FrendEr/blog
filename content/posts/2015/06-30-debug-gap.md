@@ -9,59 +9,64 @@ categories: debug
 
 最近在公司项目一直做着触屏的项目，这里不是要说项目开发的实际内容，而是调试。说到调试，目前有几种方案：
 
-## 1. Chrome的截屏
+## 1. Chrome 的截屏
 
-在PC上开发触屏项目，目前用得最多而且最方便的调试方式应该是chrome的截屏，支持20+种设备模拟，然并卵，chrome的截屏与实际的移动设备使用情况还是存在许多不一致的地方，导致很多问题在开发时没发现，一到了线上用手机测试就冒了出来😢。所以，chrome截屏并不能用来测试解决多数的兼容性问题。
+在 PC 上开发触屏项目，目前用得最多而且最方便的调试方式应该是 Chrome 的截屏，支持 20+ Chrome 的截屏与实际的移动设备使用情况还是存在许多不一致的地方，导致很多问题在开发时没发现，一到了线上用手机测试就冒了出来😢。所以，Chrome 截屏并不能用来测试解决多数的兼容性问题。
 
 ## 2. Weinre
 
-其实说起weinre，还真不想去提他。吐槽下他的文档，内容说得虽然是够清晰，但是整体样式排版看着真心别扭。[weinre官方文档](http://people.apache.org/~pmuellr/weinre/docs/latest/)。
+其实说起 Weinre，还真不想去提他。吐槽下他的文档，内容说得虽然是够清晰，但是整体样式排版看着真心别扭。[Weinre 官方文档](http://people.apache.org/~pmuellr/weinre/docs/latest/)。
 
 ## 3. 路由代理
 
-这个可以算是用得最舒服的一种方式了，但是前提是有属于你自己或者小组一个路由器随你们玩弄。这种方法就是拥有一个路由器，然后使用一个路由代理将其ip进行映射到你的机器上，例如你PC当前的ip是192.168.190.199，希望映射的域名是hahaha.com，那在路由代理那里进行映射（公司用的是极路由），然后手机连接与PC同一个路由器，再访问hahaha.com就可以访问到本地机器的页面了。当然，这种方式更多是看页面样式、交互一些表面的问题，但例如脚本错误、异常情况等是没办法用这种方法进行测试的。
+这个可以算是用得最舒服的一种方式了，但是前提是有属于你自己或者小组一个路由器随你们玩弄。这种方法就是拥有一个路由器，然后使用一个路由代理将其 IP 进行映射到你的机器上，例如你 PC 当前的 IP 是 192.168.190.199，希望映射的域名是 hahaha.com，那在路由代理那里进行映射（公司用的是极路由），然后手机连接与 PC 同一个路由器，再访问 hahaha.com 就可以访问到本地机器的页面了。当然，这种方式更多是看页面样式、交互一些表面的问题，但例如脚本错误、异常情况等是没办法用这种方法进行测试的。
 
 ## 4. DebugGap
 
-[DebugGap](http://www.debuggap.com/)被誉为最强大的webview与浏览器调试工具，建立在[node-webkit](https://github.com/nwjs/nw.js)上。在DebugGap官网下载符合你当前电脑的版本，运行一个app并填入监听的ip以及端口，给需要测试的界面引入一个debuggap.js脚本，便可以开始你的调试。
+[DebugGap](http://www.debuggap.com/)被誉为最强大的 webview 与浏览器调试工具，建立在 [node-webkit](https://github.com/nwjs/nw.js) 上。在 DebugGap 官网下载符合你当前电脑的版本，运行一个 app 并填入监听的 IP 以及端口，给需要测试的界面引入一个 debuggap.js 脚本，便可以开始你的调试。
 
-#### DebugGap使用总结，按照步骤列举如下：
+### DebugGap使用总结，按照步骤列举如下：
 
-- (1) 到[DebugGap官网](http://www.debuggap.com/)下载应用程序，不需安装，解压即可以用；
+- (1) 到 [DebugGap 官网](http://www.debuggap.com/)下载应用程序，不需安装，解压即可以用；
 
-- (2) 在需要调试的页面引用debuggap.js，
+- (2) 在需要调试的页面引用 debuggap.js，
 
 - (3) 本地需要配置：
 
-a) nginx配置
+a) nginx 配置
 
-b) host配置
+b) host 配置
 
-c) 浏览器访问http://frend.cc
-<br/>
+c) 浏览器访问 http://frend.cc
 
-##### 访问页面，注意右上角出现的蓝色按钮
+* 访问页面，注意右上角出现的蓝色按钮
+
 ![image](https://frender.github.io/blog/images/post/debuggap/browser-step1.png)
 
-##### 点击蓝色按钮，出现四叶草，选择config连接到debuggap app
+*  点击蓝色按钮，出现四叶草，选择 config 连接到 debuggap app
+
 ![image](https://frender.github.io/blog/images/post/debuggap/browser-step2.png)
 
-##### 输入ip、ports
+* 输入 ip、ports
+
 ![image](https://frender.github.io/blog/images/post/debuggap/browser-step3.png)
 
-d) debuggap app连接，并调试
-<br/>
+d) debuggap app 连接，并调试
 
-##### 连接debuggap，给各个端提供监听对象
+* 连接 debuggap，给各个端提供监听对象
+
 ![image](https://frender.github.io/blog/images/post/debuggap/debuggap-step1.png)
 
-##### 获取当前在监听的设备
+* 获取当前在监听的设备
+
 ![image](https://frender.github.io/blog/images/post/debuggap/debuggap-step2.png)
 
-##### 选择监听的设备，展示控制台
+* 选择监听的设备，展示控制台
+
 ![image](https://frender.github.io/blog/images/post/debuggap/debuggap-step3.png)
 
-##### 控制台展示网站的静态资源(`注意`右侧显示不支持单步调试提示，这里如果使用android+chrome需要用数据线连接手机与电脑，并手机打开USB调试模式以及开发者选项)
+* 控制台展示网站的静态资源(`注意`右侧显示不支持单步调试提示，这里如果使用 android + chrome 需要用数据线连接手机与电脑，并手机打开USB调试模式以及开发者选项)
+
 ![image](https://frender.github.io/blog/images/post/debuggap/debuggap-step4.png)
 
 - (4) 以上的模拟场景设备支持为：mac + chrome(截屏)。如果要使用实际的手机设备来测试，需要一个局域网，即上面第三点[路由代理](#路由代理)说的那样，然后进行页面的访问。
@@ -77,19 +82,13 @@ d) debuggap app连接，并调试
 
 `坑四：`吐槽国内的使用分享文章，清一色抄官网的，细节没说清，导致我经历了以上好多坑
 
-<br/>
-
 ## 5. 安卓在chrome上的同步调试
 
 [Remote Debugging on Android with Chrome](https://developer.chrome.com/devtools/docs/remote-debugging)，这个是chrome提供的通过使用安卓设备，在chrome上面进行同步调试的使用教程。亲测之后感觉很方便，需要一台装有chrome的安卓手机，连接到mac上即可同步调试，比4说的[DebugGap](#DebugGap)要好用得多。唯一不好的，就是手机需要通过USB连接mac，不能实现DebugGao那样的一个调试终端，多个远程终端。
 
-<br/>
-
 ## 6. iphone与mac在safari上同步调试
 
 既然可以通过安卓手机同步测试，那iphone的话就可以通过使用safari来做同步测试。[iphone与mac在safari上同步调试](http://chon.io/blog/safari-ios-iphone-itouch-web-dev-inspector/)，这个例子可以教你怎样设置iphone与mac，剩下的步骤就非常简单了。
-
-<br/>
 
 ## 7. browser-sync
 
