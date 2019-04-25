@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    基于 Gitlab Hook 的前端资源部署流程 | 前端无涯苦作舟
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="FrendEr">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars1.githubusercontent.com/u/11550410?s=460&amp;v=4"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 6 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 6 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">前端无涯苦作舟</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    FrendEr
+
+    <span class="post-date float-right" title="{{moment(1542211200000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1542211200000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>基于 Gitlab Hook 的前端资源部署流程</h1>
+    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>一年前公司的前端项目都还是放在 SVN 进行代码版本管理，并且围绕 SVN 有一套前端代码发布的流程（此处不展开）。对比 Git，无论是效率还是逼格，都让我不再愿意使用 SVN 的“老套”版本管理。所以推动了公司内部搭建了一个 <a href="https://about.gitlab.com/" target="_blank" rel="noopener">Gitlab</a> 平台，并希望将前端代码管理以及一系列的操作流程都向 Git 靠拢。</p>
+<p>如果使用 Gitlab 只是作为代码版本管理，是很简单的，跟使用外部 Github 一样。但是公司项目代码需要发布、发布需要有版本、有版本就需要有版本管理规则及流程…这一系列的问题都与我们平时开发以及项目上线效率、团队协作息息相关。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>曾在某厂打过杂，使用 Git 进行代码版本管理也是那时培养并熟悉的。某厂使用的是内部 Gitlab 平台，并且有一套语义化版本(Semantic Versioning)的开发分支管理规范。结合 Gitlab 提供的 webhooks 功能以及语义化版本(Semantic Versioning)，某厂内部建立了一套完善规范的发布流程。</p>
+<p>所以，我的思路也是利用 <code>git webhooks</code> 并配合语义化版本(Semantic Versioning)，建立一套自动部署的流程（Gitlab 平台完整支持这一流程，Github 和 Gitee 也都是支持的，不过三者的数据格式有差异，要注意区分）。</p>
+<h2 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h2><h4 id="自动化部署流程图"><a href="#自动化部署流程图" class="headerlink" title="自动化部署流程图"></a>自动化部署流程图</h4><p><img src="https://user-gold-cdn.xitu.io/2018/10/12/1666763169c9b5b1?w=1008&amp;h=803&amp;f=png&amp;s=93714" alt></p>
+<h4 id="约定规则"><a href="#约定规则" class="headerlink" title="约定规则"></a>约定规则</h4><p>大多数情况下我们都需要 <code>测试</code>与<code>生产</code> 两套环境，所以我们先为两套环境约定两个关键词：</p>
+<ul>
+<li><code>daily</code></li>
+<li><code>publish</code></li>
+</ul>
+<h5 id="daily"><a href="#daily" class="headerlink" title="daily"></a>daily</h5><p><strong>用于日常开发的 <code>branch</code></strong>。这里的 <code>daily</code> 是我们拉取开发分支的关键词，例如我们现在要从 master 拉取的 <strong>Branch</strong>，用于实现业务开发</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master &amp;&amp; git fetch</span><br><span class="line">$ git checkout -b daily/x.y.z</span><br></pre></td></tr></table></figure>
+<h5 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h5><p><strong>用于正式发布的 <code>Tag</code></strong>。这里的 <code>publish</code> 是我们从 <code>master</code> 打的 <strong>Tag</strong>，用于生产环境的代码部署</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master &amp;&amp; git fetch</span><br><span class="line">$ git tag publish/x.y.z</span><br></pre></td></tr></table></figure>
+<p>确定了两个环境对应的 <code>branch</code> 以及 <code>Tag</code> 的关键词后，配合语义化版本(Semantic Versioning)（<a href="https://semver.org/" target="_blank" rel="noopener">不了解 semver 的请看这里</a>），我们可以针对同一个环境下不同版本的代码进行管理与发布。<br>回到上面的部署流程图，当我们向 git 服务器提交代码时，将会触发我们在 Gitlab 平台项目中设置的 webhooks，并向 <code>git hooks service</code> 服务发送请求，并进入 hooks 服务的执行流程。</p>
+<h4 id="版本控制规则"><a href="#版本控制规则" class="headerlink" title="版本控制规则"></a>版本控制规则</h4><p>首先列举两个较为常见的静态版本控制的方案：</p>
+<ul>
+<li>静态资源路径携带 querystring 的方式，例如：<code>//static.website.com/pc/index.js?version=20181010</code></li>
+<li>静态资源文件命名携带动态参数的方式，例如：<code>//static.website.com/pc/index.edshajdhvbx.js</code></li>
+</ul>
+<p>第一种方案最为常见，但是有个比较明显的问题：<strong>前端代码覆盖式发布、回滚难度大</strong>；</p>
+<p>第二种方案配合一些前端打包工具（例如 webpack）实现起来也很方便，能够解决方案一的问题，<strong>但是动态参数一般为随机生成的哈希值，上线后识别度较低，版本概念不明显</strong>。</p>
+<p>经常使用 <code>npm</code> 的伙伴肯定十分了解，我们的 <code>npm</code> 在管理包的时候使用的就是我们上文提到的语义化版本 (semver)，而且每个版本号对于发包者来说，都是清晰定义的，发布后对于使用者来说也能第一时间察觉。所以，我们的发布流程，在约定版本时，也参照一样的规则给我们的项目做一个版本的划分：<code>x.y.z</code>，上线后静态资源链接如：<code>//static.website.com/pc/1.0.0/index.js</code></p>
+<h2 id="如何搭建部署流程"><a href="#如何搭建部署流程" class="headerlink" title="如何搭建部署流程"></a>如何搭建部署流程</h2><p>网上有很多关于使用 git webhooks 进行自动化部署方案的文章，基本都是需要手动修改服务器中代码仓库的 <code>.git/hooks/*.sample</code> 来支持一系列的自动化操作。这种方案的缺点是：</p>
+<ul>
+<li>需要熟悉 <code>shell</code> 进行代码编写（针对非运维同学，这个是比较大的实现成本）</li>
+<li>可复用性差，每建立一个仓库都需要手动修改一次</li>
+<li>可维护性差，规则在每个独立的仓库中，如果要批量修改成本极高</li>
+</ul>
+<p><strong>那某厂是怎么做的呢？</strong> 某厂的 Gitlab 仓库在创建后便自动支持了上述的部署流程，我猜想是对 Gitlab 平台进行了定制才能支持这个规则的，但是这个对于小公司来说是不现实的。</p>
+<p>针对以上情况，我还是选择了自己开发一个接收 git hooks 请求的服务。下面来了解下如何搭建这个服务，并如何在 Gitlab 中接入服务。</p>
+<h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
+<li>Gitlab 平台（我的是 Gitlab 9.2.6）</li>
+<li>服务器一台（我的是 CentOS 6.5），并已经安装配置好以下环境：<ul>
+<li>Git</li>
+<li>Node(LTS)</li>
+<li>PM2</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>未完待续…</p>
+</blockquote>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://ondouble.click" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 FrendEr</li>
+      <li><a href="http://ondouble.click">Home</a></li>
+      
+      <li><a href="https://github.com/FrendEr">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

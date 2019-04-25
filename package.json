@@ -2,6 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "scripts": {
+    "gen": "hexo g -d",
     "start": "hexo server",
     "deploy": "pm2 start --name blog hexo -- s"
   },

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    前端模块化 - CommonJS、AMD与CMD | 前端无涯苦作舟
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="FrendEr">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars1.githubusercontent.com/u/11550410?s=460&amp;v=4"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 6 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 6 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">前端无涯苦作舟</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    FrendEr
+
+    <span class="post-date float-right" title="{{moment(1422720000000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1422720000000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>前端模块化 - CommonJS、AMD与CMD</h1>
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。</span><br><span class="line">CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。</span><br><span class="line">-- 玉伯</span><br></pre></td></tr></table></figure>
+<p>第一次听说 SeaJS，已经是两年前的事了，但一直没有机会让我意识到模块化对于前端开发的好处，所以也没有深入去了解使用 SeaJS 或者 RequireJS 这类的模块加载器进行模块化编程。</p>
+<p>随着公司项目越来越大，不管是代码维护还是新功能模块的添加，都越显困难与无力。模块化编程现在已经非常成熟，很多大的公司项目已经在使用，例如 QQ 空间、淘宝等。模块化编程在发展过程中，已经形成了多套规范以及基于不同规范的框架。本博文是我在探讨这些规范以及模块化框架过程中的一些总结与记录，已作分享以及备忘使用。</p>
+<h2 id="1-CommonJS-规范"><a href="#1-CommonJS-规范" class="headerlink" title="1. CommonJS 规范"></a>1. CommonJS 规范</h2><p>CommonJS 是服务器端模块化的规范，Node.js 就是基于 CommonJS Modules/1.0。</p>
+<p>根据 CommonJS 规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，在改模块内定义的变量无法被其他模块所读取，除非定义为 global 对象的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"></span><br><span class="line">global.name = <span class="string">'Frend'</span>;</span><br></pre></td></tr></table></figure>
+<p>以上定义的 <code>name</code> 变量可以被所有的模块所读取，但是并不推荐这种方式。输出模块的变量，最好的方式是使用 exports(module.exports) 对象。</p>
+<p>关于 <code>exports 与 module.exports的区别</code> 推荐看<a href="http://zihua.li/2012/03/use-module-exports-or-exports-in-node/" target="_blank" rel="noopener">一位全栈码农对 exports 与 module.exports 的分析</a>。如果这篇博文让你还是理解不了，那给出一个更加浅显的说明：exports 一般是一个对象，用于挂一堆的方法或者属性，例如一个 slider 滑动模块，有一堆的控制方法和属性，这种情况下就可以用 exports 来挂载，而另外一种情况，例如这个模块是叫 $G.dom.get，实现和 jQuery 的 $() 一样的功能，这时候不需要额外的一些乱七八糟的东西，只需要它是个方法，能直接调用，这时就可以使用 module.exports 了，调用的时候就可以直接通过 $get = require( ‘./dom/get’ ); $get 方法来使用了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// module_a.js</span></span><br><span class="line"></span><br><span class="line">exports.name = <span class="string">'Frend'</span>;</span><br><span class="line"></span><br><span class="line">exports.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 require 方法，加载 module_a.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> module_a = <span class="built_in">require</span>(<span class="string">'./module_a.js'</span>);    <span class="comment">// 同步加载模块，加载完再执行后面的代码</span></span><br><span class="line"></span><br><span class="line">module_a.say(); <span class="comment">// Frend</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-AMD-规范"><a href="#2-AMD-规范" class="headerlink" title="2. AMD 规范"></a>2. AMD 规范</h2><p>从 <a href="#commonjs">CommonJS 规范</a>已经初步了解了 CommonJS，它加载模块时是同步的，也就是说，只有加载完成才会开始执行后面的操作。由于 Node.js 主要是用于服务器编程，模块文件一般是存放在服务器硬盘，所以加载会非常的快，不用考虑像浏览器请求脚本时造成阻塞等的情况，所以 CommonJS 规范比较适用。但是，如果是在浏览器，要从服务器加载模块，带宽是主要的瓶颈，所以 AMD 规范提倡的异步加载模块的方式比较适用。</p>
+<p><a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" rel="noopener">AMD（Asynchronous Module Definition）规范</a>则是异步加载模块，即模块的加载不会影响后面语句的运行。所有依赖于某些模块的语句均放在回调函数中执行。</p>
+<h3 id="2-1-AMD-的全局变量-——-define-函数"><a href="#2-1-AMD-的全局变量-——-define-函数" class="headerlink" title="2.1 AMD 的全局变量 —— define 函数"></a>2.1 AMD 的全局变量 —— define 函数</h3><h4 id="define-id-dependencies-factory"><a href="#define-id-dependencies-factory" class="headerlink" title="define(id?, dependencies?, factory)"></a>define(id?, dependencies?, factory)</h4><p><code>id</code> 为可选参数，字符串类型，表示当前模块的标识。</p>
+<p><code>dependencies</code> 可选参数，当前模块所依赖并已经被定义的模块标志的数组字面量。</p>
+<p><code>factory</code> 一个模块需要执行一次的函数或者是分配了模块属性的的对象。</p>
+<ul>
+<li>创建模块标识为 alpha 的模块，依赖于 require，export，和标识为 beta 的模块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'alpha'</span>, [<span class="string">'require'</span>, <span class="string">'exports'</span>, <span class="string">'beta'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require, exports, beta</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">export</span>.verb = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> beta.verb();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个返回对象字面量的异步模块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">'alpha'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">alpha</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    verb: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> alpha.verb() + <span class="number">1</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无依赖模块可以直接使用对象字面量来定义</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(&#123;</span><br><span class="line">  add: <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>兼容 CommonJS 的写法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'a'</span>),</span><br><span class="line">      b = <span class="built_in">require</span>(<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">  exports.action = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-AMD-的-factory-中的-require-参数"><a href="#2-2-AMD-的-factory-中的-require-参数" class="headerlink" title="2.2 AMD 的 factory 中的 require 参数"></a>2.2 AMD 的 factory 中的 require 参数</h3><ul>
+<li>require(String)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'a'</span>);   <span class="comment">// 加载模块a</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>require(Array, Function)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">require</span>([<span class="string">'a'</span>, <span class="string">'b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;    <span class="comment">// 加载模块a b 使用</span></span><br><span class="line">    <span class="comment">// 依赖 a b 模块的运行代码</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>require.toUrl(Url)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> temp = <span class="built_in">require</span>.toUrl(<span class="string">'./temp/a.html'</span>);  <span class="comment">// 加载页面</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="3-CMD规范"><a href="#3-CMD规范" class="headerlink" title="3. CMD规范"></a>3. CMD规范</h2><p>CMD（Common Module Definition）规范是 SeaJS 遵循的规范，明确了模块的基本书写格式和基本交互规则。</p>
+<p>在该规范中，一个模块就是一个文件。</p>
+<p>###3.1 CMD 的全局变量 —— define 函数</p>
+<h4 id="define-id-dependencies-factory-1"><a href="#define-id-dependencies-factory-1" class="headerlink" title="define(id?, dependencies?, factory)"></a>define(id?, dependencies?, factory)</h4><p><code>id</code> 为可选参数，字符串类型，表示当前模块的标识。</p>
+<p><code>dependencies</code> 为可选参数，数组类型，表示当前模块的依赖。</p>
+<p><code>factory</code> 可以是对象、字符串或者函数</p>
+<ul>
+<li>定义 JSON 数据模块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(&#123;<span class="string">'foo'</span>: <span class="string">'bar'</span>&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过字符串定义模板模块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'this is &#123;&#123;data&#125;&#125;.'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>factory 为函数的时候，表示模块的构造方法，执行构造方法便可以得到模块向外提供的接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 模块代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当拥有两个以上参数时<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'module'</span>, [<span class="string">'module1'</span>, <span class="string">'module2'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 模块代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>从上面代码对比来看，CMD 与 AMD 规范在 define 函数上用法不相同。</p>
+<h3 id="3-2-CMD-的-factory-中的-require-参数"><a href="#3-2-CMD-的-factory-中的-require-参数" class="headerlink" title="3.2 CMD 的 factory 中的 require 参数"></a>3.2 CMD 的 factory 中的 require 参数</h3><ul>
+<li><code>require(id);</code> 接受模块标识作为唯一的参数，用来获取其他模块提供的接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</span><br><span class="line"></span><br><span class="line">  a.doSomething();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>require.async(id, callback?);</code> require 是同步往下执行的，需要的异步加载模块可以使用 require.async 来进行加载</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">require</span>.async(<span class="string">'.a'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    a.doSomething();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-CMD-的-factory-中的-exports-参数"><a href="#3-3-CMD-的-factory-中的-exports-参数" class="headerlink" title="3.3 CMD 的 factory 中的 exports 参数"></a>3.3 CMD 的 factory 中的 exports 参数</h3><ul>
+<li>exports 用来向外提供模块接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports</span>) </span>&#123;</span><br><span class="line">  exports.foo = <span class="string">'bar'</span>;         <span class="comment">// 向外提供的属性</span></span><br><span class="line">  exports.do = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;  <span class="comment">// 向外提供的方法</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 return 直接向外提供接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    foo: <span class="string">'bar'</span>,         <span class="comment">// 向外提供的属性</span></span><br><span class="line">    <span class="keyword">do</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;   <span class="comment">// 向外提供的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>简化为直接对象字面量的形式</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(&#123;</span><br><span class="line">  foo: <span class="string">'bar'</span>,           <span class="comment">// 向外提供的属性</span></span><br><span class="line">  <span class="keyword">do</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;     <span class="comment">// 向外提供的方法</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与 NodeJS 中一样需要注意的情况</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// wrong</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports</span>) </span>&#123;</span><br><span class="line">  exports = &#123;</span><br><span class="line">    foo: <span class="string">'bar'</span>,           <span class="comment">// 向外提供的属性</span></span><br><span class="line">    <span class="keyword">do</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;     <span class="comment">// 向外提供的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// correct</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    foo: <span class="string">'bar'</span>,           <span class="comment">// 向外提供的属性</span></span><br><span class="line">    <span class="keyword">do</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;     <span class="comment">// 向外提供的方法</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-CMD-的-factory-中的-module-参数"><a href="#3-4-CMD-的-factory-中的-module-参数" class="headerlink" title="3.4 CMD 的 factory 中的 module 参数"></a>3.4 CMD 的 factory 中的 module 参数</h3><ul>
+<li>module 是 factory 的第三个参数，为一个对象，上面存储了一些与当前模块相关联的属性与方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.id           <span class="comment">// 为模块的唯一标识。</span></span><br><span class="line"><span class="built_in">module</span>.uri          <span class="comment">// 根据模块系统的路径解析规则得到模块的绝对路径。</span></span><br><span class="line"><span class="built_in">module</span>.dependencies <span class="comment">// 表示模块的依赖。</span></span><br><span class="line"><span class="built_in">module</span>.exports      <span class="comment">// 当前模块对外提供的接口。</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-AMD-与-CMD-的区别"><a href="#4-AMD-与-CMD-的区别" class="headerlink" title="4. AMD 与 CMD 的区别"></a>4. AMD 与 CMD 的区别</h2><p>下面是玉伯对于 AMD 与 CMD 区别的解释：</p>
+<p>AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。</p>
+<p>CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。</p>
+<p>AMD与CMD都是为了实现javascript的模块化开发，特别是在浏览器端。下面介绍两者的区别：</p>
+<ol>
+<li><p>对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.</p>
+</li>
+<li><p>CMD推崇依赖就近，AMD推崇依赖前置。</p>
+</li>
+</ol>
+<ul>
+<li>CMD推崇依赖就近，可以把依赖写进你的代码中的任意一行</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMD</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</span><br><span class="line">  a.doSomething()</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);  <span class="comment">// 依赖可以就近书写</span></span><br><span class="line">  b.doSomething()</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>代码在运行时，首先是不知道依赖的，需要遍历所有的 require 关键字，找出后面的依赖。具体做法是将 function toString 后，用正则匹配出 require 关键字后面的依赖。显然，这是一种牺牲性能来换取更多开发便利的方法。</p>
+<ul>
+<li>AMD 推崇依赖前置，在解析和执行当前模块之前，模块作者必须指明当前模块所依赖的模块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AMD</span></span><br><span class="line">define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="comment">// 依赖必须一开始就写好</span></span><br><span class="line">  a.doSomething()</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  b.doSomething()</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>代码在一旦运行到此处，能立即知晓依赖。而无需遍历整个函数体找到它的依赖，因此性能有所提升，缺点就是开发者必须显式得指明依赖——这会使得开发工作量变大，比如：当你写到函数体内部几百上千行的时候，忽然发现需要增加一个依赖，你不得不回到函数顶端来将这个依赖添加进数组。</p>
+<p>对比</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th style="text-align:center">优势</th>
+<th style="text-align:center">劣势</th>
+<th style="text-align:right">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD</td>
+<td style="text-align:center">速度快</td>
+<td style="text-align:center">会浪费资源</td>
+<td style="text-align:right">预先加载所有的依赖，直到使用的时候才执行</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td style="text-align:center">只有真正需要才加载依赖</td>
+<td style="text-align:center">性能较差</td>
+<td style="text-align:right">直到使用的时候才定义依赖</td>
+</tr>
+</tbody>
+</table>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://ondouble.click" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 FrendEr</li>
+      <li><a href="http://ondouble.click">Home</a></li>
+      
+      <li><a href="https://github.com/FrendEr">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

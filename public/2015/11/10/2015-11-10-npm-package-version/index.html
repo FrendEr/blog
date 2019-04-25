@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    NPM 版本管理 | 前端无涯苦作舟
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="FrendEr">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars1.githubusercontent.com/u/11550410?s=460&amp;v=4"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 6 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 6 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">前端无涯苦作舟</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    FrendEr
+
+    <span class="post-date float-right" title="{{moment(1447084800000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1447084800000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>NPM 版本管理</h1>
+    <blockquote>
+<p>在发布与使用npm package的时候，对于package version的定义与使用规则存在疑惑，所以整理了一份文档。这个repo仅作记录与探讨npm包的版本号使用。</p>
+</blockquote>
+<blockquote>
+<p>如果描述中存在错误的地方，望指出。</p>
+</blockquote>
+<p><br></p>
+<h2 id="Publish-package时，x-y-z代表什么？"><a href="#Publish-package时，x-y-z代表什么？" class="headerlink" title="Publish package时，x.y.z代表什么？"></a>Publish package时，x.y.z代表什么？</h2><blockquote>
+<p>x.y.z 对应的表达式是 major.minor.patch</p>
+</blockquote>
+<ul>
+<li><p><strong>v1.0.0 表示 Release(正式发布)</strong> : the project is going to be shared with others, it should start at 1.0.0(Npm rule).</p>
+</li>
+<li><p><strong>v1.0.1 表示 Patch release(补丁发布)</strong> : make some backwards-compatible bug fixes</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// npm version cmd</span></span><br><span class="line">npm version patch</span><br><span class="line"></span><br><span class="line"><span class="comment">// package version changes to</span></span><br><span class="line">v1<span class="number">.0</span><span class="number">.0</span> ===&gt; v1<span class="number">.0</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>v1.1.0 表示 Minor release(小迭代版本发布)</strong> : add new features but don’t break existing features. It’s <code>backwards compatibility</code>.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// npm version cmd</span></span><br><span class="line">npm version minor</span><br><span class="line"></span><br><span class="line"><span class="comment">// package version changes to</span></span><br><span class="line">v1<span class="number">.0</span><span class="number">.1</span> ===&gt; v1<span class="number">.1</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>v2.0.0 表示 Major release(主版本发布)</strong> : changes which <code>break backwards compatibility</code>.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// npm version cmd</span></span><br><span class="line">npm version major</span><br><span class="line"></span><br><span class="line"><span class="comment">// package version changes to</span></span><br><span class="line">v1<span class="number">.1</span><span class="number">.0</span> ===&gt; v2<span class="number">.0</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Publish-package的命令-SemVer"><a href="#Publish-package的命令-SemVer" class="headerlink" title="Publish package的命令(SemVer)"></a>Publish package的命令(SemVer)</h2><ul>
+<li><strong>Patch release</strong></li>
+</ul>
+<blockquote>
+<p>执行后x.y.z中的z自动加1</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm version patch</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Minor release</strong></li>
+</ul>
+<blockquote>
+<p>执行后x.y.z中的y自动加1，z重置为0</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm version minor</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Major release</strong></li>
+</ul>
+<blockquote>
+<p>执行后x.y.z中的x自动加1，y和z重置为0</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm version major</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Install-package时，常见的版本号匹配规则"><a href="#Install-package时，常见的版本号匹配规则" class="headerlink" title="Install package时，常见的版本号匹配规则"></a>Install package时，<code>常见</code>的版本号匹配规则</h2><ul>
+<li><strong>&gt;1.0.1</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="number">1.0</span><span class="number">.1</span> (<span class="number">1.0</span><span class="number">.2</span>, <span class="number">1.0</span><span class="number">.3</span> etc)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&gt;=1.0.1</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;=<span class="number">1.0</span><span class="number">.1</span> (<span class="number">1.0</span><span class="number">.1</span>, <span class="number">1.0</span><span class="number">.2</span>, <span class="number">1.0</span><span class="number">.3</span> etc)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&lt;1.0.5</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;<span class="number">1.0</span><span class="number">.5</span> (<span class="number">1.0</span><span class="number">.4</span>, <span class="number">1.0</span><span class="number">.3</span> etc)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&lt;=1.0.5</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;=<span class="number">1.0</span><span class="number">.5</span> (<span class="number">1.0</span><span class="number">.5</span>, <span class="number">1.0</span><span class="number">.4</span>, <span class="number">1.0</span><span class="number">.3</span> etc)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&gt;1.2.3-alpha.2</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">prerelease version, match <span class="number">1.2</span><span class="number">.3</span>-alpha<span class="number">.3</span>, <span class="number">1.2</span><span class="number">.3</span>-alpha<span class="number">.4</span> etc, but not match <span class="number">4.5</span><span class="number">.6</span>-alpha<span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>1.1.x</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;=<span class="number">1.1</span><span class="number">.0</span> &amp;&amp; &lt; 1.2.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>~1.1.4</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;=<span class="number">1.1</span><span class="number">.4</span> &amp;&amp; &lt;1.2.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>^1.1.4</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;=<span class="number">1.1</span><span class="number">.4</span> &amp;&amp; &lt;2.0.0</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="关于-tilde-和-caret"><a href="#关于-tilde-和-caret" class="headerlink" title="关于~(tilde) 和 ^(caret)"></a>关于~(tilde) 和 ^(caret)</h2><blockquote>
+<p>从node v0.10.26开始，通过<code>install --save</code>安装的模块会使用^(caret)代替~(tilde)。</p>
+</blockquote>
+<h5 id="tilde-和-caret-的匹配规则不同，例如：-1-0-4会在-gt-1-0-4-amp-amp-lt-1-1-0-中匹配1-0-x的最高版本；-1-0-4会在-gt-1-0-4-amp-amp-lt-2-0-0-中匹配1-x-x的最高版本。"><a href="#tilde-和-caret-的匹配规则不同，例如：-1-0-4会在-gt-1-0-4-amp-amp-lt-1-1-0-中匹配1-0-x的最高版本；-1-0-4会在-gt-1-0-4-amp-amp-lt-2-0-0-中匹配1-x-x的最高版本。" class="headerlink" title="~(tilde) 和 ^(caret)的匹配规则不同，例如：~1.0.4会在[ &gt;=1.0.4 &amp;&amp; &lt;1.1.0 ]中匹配1.0.x的最高版本；^1.0.4会在[ &gt;= 1.0.4 &amp;&amp; &lt;2.0.0 ]中匹配1.x.x的最高版本。"></a>~(tilde) 和 ^(caret)的匹配规则不同，例如：~1.0.4会在[ &gt;=1.0.4 &amp;&amp; &lt;1.1.0 ]中匹配1.0.x的最高版本；^1.0.4会在[ &gt;= 1.0.4 &amp;&amp; &lt;2.0.0 ]中匹配1.x.x的最高版本。</h5><p><br></p>
+<h2 id="是否该使用0-y-z这样的版本？"><a href="#是否该使用0-y-z这样的版本？" class="headerlink" title="是否该使用0.y.z这样的版本？"></a>是否该使用0.y.z这样的版本？</h2><blockquote>
+<p>Major version zero (0.y.z) is for initial development. Anything may change at any time. The public API should not be considered stable.<br>― semver.org</p>
+</blockquote>
+<h5 id="上面是官方的文档说明，意思是由于不是正式发布的版本，模块的API随时可能会被修改，而且可能会不向后兼容，因此模块的API为不稳定的API。"><a href="#上面是官方的文档说明，意思是由于不是正式发布的版本，模块的API随时可能会被修改，而且可能会不向后兼容，因此模块的API为不稳定的API。" class="headerlink" title="上面是官方的文档说明，意思是由于不是正式发布的版本，模块的API随时可能会被修改，而且可能会不向后兼容，因此模块的API为不稳定的API。"></a>上面是官方的文档说明，意思是由于不是正式发布的版本，模块的API随时可能会被修改，而且可能会不向后兼容，因此模块的API为不稳定的API。</h5><p><br></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><a href="https://docs.npmjs.com/getting-started/semantic-versioning" target="_blank" rel="noopener">Semantic versioning and npm</a> – <strong>Npm Tutorial</strong></p>
+</li>
+<li><p><a href="https://docs.npmjs.com/misc/semver" target="_blank" rel="noopener">The semantic versioner for npm</a> – <strong>Npm Tutorial</strong></p>
+</li>
+<li><p><a href="http://fredkschott.com/post/2014/02/npm-no-longer-defaults-to-tildes/" target="_blank" rel="noopener"><strong>npm install –save</strong> No Longer Using Tildes</a> –  <strong>@FredKSchott</strong></p>
+</li>
+</ul>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://ondouble.click" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 FrendEr</li>
+      <li><a href="http://ondouble.click">Home</a></li>
+      
+      <li><a href="https://github.com/FrendEr">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
