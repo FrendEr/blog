@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    移动调试方法总结 | 前端无涯苦作舟
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="FrendEr">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars1.githubusercontent.com/u/11550410?s=460&amp;v=4"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 6 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">前端无涯苦作舟</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    FrendEr
+
+    <span class="post-date float-right" title="{{moment(1435593600000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1435593600000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>移动调试方法总结</h1>
+    <p>最近在公司项目一直做着触屏的项目，这里不是要说项目开发的实际内容，而是调试。说到调试，目前有几种方案：</p>
+<h2 id="1-Chrome-的截屏"><a href="#1-Chrome-的截屏" class="headerlink" title="1. Chrome 的截屏"></a>1. Chrome 的截屏</h2><p>在 PC 上开发触屏项目，目前用得最多而且最方便的调试方式应该是 Chrome 的截屏，支持 20+ Chrome 的截屏与实际的移动设备使用情况还是存在许多不一致的地方，导致很多问题在开发时没发现，一到了线上用手机测试就冒了出来😢。所以，Chrome 截屏并不能用来测试解决多数的兼容性问题。</p>
+<h2 id="2-Weinre"><a href="#2-Weinre" class="headerlink" title="2. Weinre"></a>2. Weinre</h2><p>其实说起 Weinre，还真不想去提他。吐槽下他的文档，内容说得虽然是够清晰，但是整体样式排版看着真心别扭。<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="noopener">Weinre 官方文档</a>。</p>
+<h2 id="3-路由代理"><a href="#3-路由代理" class="headerlink" title="3. 路由代理"></a>3. 路由代理</h2><p>这个可以算是用得最舒服的一种方式了，但是前提是有属于你自己或者小组一个路由器随你们玩弄。这种方法就是拥有一个路由器，然后使用一个路由代理将其 IP 进行映射到你的机器上，例如你 PC 当前的 IP 是 192.168.190.199，希望映射的域名是 hahaha.com，那在路由代理那里进行映射（公司用的是极路由），然后手机连接与 PC 同一个路由器，再访问 hahaha.com 就可以访问到本地机器的页面了。当然，这种方式更多是看页面样式、交互一些表面的问题，但例如脚本错误、异常情况等是没办法用这种方法进行测试的。</p>
+<h2 id="4-DebugGap"><a href="#4-DebugGap" class="headerlink" title="4. DebugGap"></a>4. DebugGap</h2><p><a href="http://www.debuggap.com/" target="_blank" rel="noopener">DebugGap</a>被誉为最强大的 webview 与浏览器调试工具，建立在 <a href="https://github.com/nwjs/nw.js" target="_blank" rel="noopener">node-webkit</a> 上。在 DebugGap 官网下载符合你当前电脑的版本，运行一个 app 并填入监听的 IP 以及端口，给需要测试的界面引入一个 debuggap.js 脚本，便可以开始你的调试。</p>
+<h3 id="DebugGap使用总结，按照步骤列举如下："><a href="#DebugGap使用总结，按照步骤列举如下：" class="headerlink" title="DebugGap使用总结，按照步骤列举如下："></a>DebugGap使用总结，按照步骤列举如下：</h3><ul>
+<li><p>(1) 到 <a href="http://www.debuggap.com/" target="_blank" rel="noopener">DebugGap 官网</a>下载应用程序，不需安装，解压即可以用；</p>
+</li>
+<li><p>(2) 在需要调试的页面引用 debuggap.js，</p>
+</li>
+<li><p>(3) 本地需要配置：</p>
+</li>
+</ul>
+<p>a) nginx 配置</p>
+<p>b) host 配置</p>
+<p>c) 浏览器访问 <a href="http://frend.cc" target="_blank" rel="noopener">http://frend.cc</a></p>
+<ul>
+<li>访问页面，注意右上角出现的蓝色按钮</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/browser-step1.png" alt="image"></p>
+<ul>
+<li>点击蓝色按钮，出现四叶草，选择 config 连接到 debuggap app</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/browser-step2.png" alt="image"></p>
+<ul>
+<li>输入 ip、ports</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/browser-step3.png" alt="image"></p>
+<p>d) debuggap app 连接，并调试</p>
+<ul>
+<li>连接 debuggap，给各个端提供监听对象</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/debuggap-step1.png" alt="image"></p>
+<ul>
+<li>获取当前在监听的设备</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/debuggap-step2.png" alt="image"></p>
+<ul>
+<li>选择监听的设备，展示控制台</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/debuggap-step3.png" alt="image"></p>
+<ul>
+<li>控制台展示网站的静态资源(<code>注意</code>右侧显示不支持单步调试提示，这里如果使用 android + chrome 需要用数据线连接手机与电脑，并手机打开USB调试模式以及开发者选项)</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/debuggap/debuggap-step4.png" alt="image"></p>
+<ul>
+<li><p>(4) 以上的模拟场景设备支持为：mac + chrome(截屏)。如果要使用实际的手机设备来测试，需要一个局域网，即上面第三点<a href="#路由代理">路由代理</a>说的那样，然后进行页面的访问。</p>
+</li>
+<li><p>(5) 你以为做完(4)就OK了吗？！NO！！！还有坑！——</p>
+</li>
+</ul>
+<p><code>坑一：</code> IOS8.1.x以上是看不到控制台可以调试的内容，即以下的图展示的内容，看不到！！！<br><img src="https://frender.github.io/blog/images/post/debuggap/debuggap-step3.png" alt="image"></p>
+<p><code>坑二：</code>手机必须用USB连接上电脑才可以单步调试，从不知道到知道，我折腾了好久，不要问我是怎么发现的</p>
+<p><code>坑三：</code>你用iphone来调试？还想用chrome来访问？呵呵，这里貌似不行，至于为什么，我也不懂。。。</p>
+<p><code>坑四：</code>吐槽国内的使用分享文章，清一色抄官网的，细节没说清，导致我经历了以上好多坑</p>
+<h2 id="5-安卓在chrome上的同步调试"><a href="#5-安卓在chrome上的同步调试" class="headerlink" title="5. 安卓在chrome上的同步调试"></a>5. 安卓在chrome上的同步调试</h2><p><a href="https://developer.chrome.com/devtools/docs/remote-debugging" target="_blank" rel="noopener">Remote Debugging on Android with Chrome</a>，这个是chrome提供的通过使用安卓设备，在chrome上面进行同步调试的使用教程。亲测之后感觉很方便，需要一台装有chrome的安卓手机，连接到mac上即可同步调试，比4说的<a href="#DebugGap">DebugGap</a>要好用得多。唯一不好的，就是手机需要通过USB连接mac，不能实现DebugGao那样的一个调试终端，多个远程终端。</p>
+<h2 id="6-iphone与mac在safari上同步调试"><a href="#6-iphone与mac在safari上同步调试" class="headerlink" title="6. iphone与mac在safari上同步调试"></a>6. iphone与mac在safari上同步调试</h2><p>既然可以通过安卓手机同步测试，那iphone的话就可以通过使用safari来做同步测试。<a href="http://chon.io/blog/safari-ios-iphone-itouch-web-dev-inspector/" target="_blank" rel="noopener">iphone与mac在safari上同步调试</a>，这个例子可以教你怎样设置iphone与mac，剩下的步骤就非常简单了。</p>
+<h2 id="7-browser-sync"><a href="#7-browser-sync" class="headerlink" title="7. browser-sync"></a>7. browser-sync</h2><p><a href="http://www.browsersync.io/" target="_blank" rel="noopener">link</a></p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://ondouble.click" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 FrendEr</li>
+      <li><a href="http://ondouble.click">Home</a></li>
+      
+      <li><a href="https://github.com/FrendEr">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

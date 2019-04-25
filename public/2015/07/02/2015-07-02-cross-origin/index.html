@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>
+    Web 跨域解决方案 JSONP + CORS + PostMessage (基于 Node.js) | 前端无涯苦作舟
+  </title>
+  <meta name="description" content>
+  
+  <meta name="keywords" content="
+  
+  ">
+  
+  <meta name="author" content="FrendEr">
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="theme-color" content="#1e2327">
+  <link rel="apple-touch-icon" href="https://github.githubassets.com/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://github.githubassets.com/apple-touch-icon-180x180.png">
+
+  <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+
+  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.25-csp/vue.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+</head>
+
+<body id="replica-app">
+
+<nav class="navbar-wrapper">
+  <div class="navbar">
+    <div class="container clearfix">
+      <a href="/" class="navbar-logo"><i class="fa fa-github"></i></a>
+
+      <div class="navbar-search float-left desktop-only">
+        <div class="navbar-search-form">
+          <label for="gsc-i-id1">This website</label>
+          <div id="google-search">
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav float-left">
+        
+        <li><a href="/archives">Archives</a></li>
+        
+        
+        <li><a href="/categories">Categories</a></li>
+        
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        
+        <li class="desktop-only"><a href="/atom.xml" target="_blank">RSS</a></li>
+        
+      </ul>
+
+      <ul class="navbar-nav user-nav float-right desktop-only">
+        <li class="user-nav-notification">
+          <a><span class="user-nav-unread"></span><i class="fa fa-bell"></i></a>
+        </li>
+        <li>
+          <a><i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i></a>
+        </li>
+        <li class="user-nav-logo">
+          <a><img src="https://avatars1.githubusercontent.com/u/11550410?s=460&amp;v=4"> <i class="fa fa-caret-down"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="main-container">
+  <header class="header-wrapper desktop-only">
+  <div class="container header-site-detail">
+    <ul class="header-toolbar">
+      <li class="clearfix">
+        <a href="/archives" class="header-toolbar-left"><i class="fa fa-file-text"></i> Posts </a>
+        <a href="/archives" class="header-toolbar-right"> 6 </a>
+      </li>
+      <li>
+        <a href="/tags" class="header-toolbar-left"><i class="fa fa-tags"></i> Tags </a>
+        <a href="/tags" class="header-toolbar-right"> 0 </a>
+      </li>
+      <li>
+        <a href="/categories" class="header-toolbar-left"><i class="fa fa-folder-open"></i> Categories </a>
+        <a href="/categories" class="header-toolbar-right"> 7 </a>
+      </li>
+    </ul>
+    <h2 class="header-title">
+      <i class="fa fa-book text-muted"></i>
+      <a href="/">前端无涯苦作舟</a>
+      
+      
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="header-tab-wrapper clearfix">
+      <span class="header-tab header-tab-selected"><i class="fa fa-thumbs-o-up"></i> Like</span>
+      <span class="header-tab"><i class="fa fa-share-alt"></i> Share</span>
+      <span class="header-tab"><i class="fa fa-comments-o"></i> Discussion</span>
+      <span class="header-tab"><i class="fa fa-bookmark-o"></i> Bookmark </span>
+      <span class="header-tab"><i class="fa fa-smile-o"></i> Smile <i class="fa fa-caret-down"></i></span>
+    </div>
+  </div>
+</header>
+
+
+<div class="post-container container">
+  <h3>
+    <i class="fa fa-user-o"></i>
+    FrendEr
+
+    <span class="post-date float-right" title="{{moment(1435766400000).format('MMM DD, YYYY, h:mm:ss A')}}">
+      <i class="fa fa-pencil-square-o"></i>
+      {{moment(1435766400000).fromNow()}}
+    </span>
+  </h3>
+
+  <article class="post-content">
+    <h1>Web 跨域解决方案 JSONP + CORS + PostMessage (基于 Node.js)</h1>
+    <p>跨域是web开发过程中经常会遇见的一种问题，因为javascript的同源策略的限制，a.com域名下是无法操作b.com下的对象或者调用接口的。</p>
+<ul>
+<li>什么情况算跨域？</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>request url</th>
+<th style="text-align:center">response url</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:right">是否允许通讯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="noopener">www.a.com/a.js</a></td>
+<td style="text-align:center"><a href="http://www.a.com/b.js" target="_blank" rel="noopener">www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名</td>
+<td style="text-align:right">允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="noopener">www.a.com/a.js</a></td>
+<td style="text-align:center"><a href="http://www.a.com:8080/b.js" target="_blank" rel="noopener">www.a.com:8080/b.js</a></td>
+<td style="text-align:center">同一域名，端口不同</td>
+<td style="text-align:right">不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="noopener">http://www.a.com/a.js</a></td>
+<td style="text-align:center"><a href="https://www.a.com/b.js" target="_blank" rel="noopener">https://www.a.com/b.js</a></td>
+<td style="text-align:center">同一域名，协议不同</td>
+<td style="text-align:right">不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="noopener">www.a.com/a.js</a></td>
+<td style="text-align:center">blog.a.com/b.js</td>
+<td style="text-align:center">一级域名相同，二级域名不同</td>
+<td style="text-align:right">不允许</td>
+</tr>
+<tr>
+<td><a href="http://www.a.com/a.js" target="_blank" rel="noopener">www.a.com/a.js</a></td>
+<td style="text-align:center"><a href="http://www.b.com/b.js" target="_blank" rel="noopener">www.b.com/b.js</a></td>
+<td style="text-align:center">不同域名</td>
+<td style="text-align:right">不允许</td>
+</tr>
+</tbody>
+</table>
+<p>目前解决跨域的方法比较多，通常有iframe、动态创建script、document.domain、flash、jsonp、cors、postMessage这几种。但本文只给出<code>jsonp</code>、<code>cors</code>与<code>postMessage</code>三种的测试例子。</p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>node.js  ~0.12.0</li>
+<li>express  ~4.12.1</li>
+<li>jade     ~1.9.2</li>
+</ul>
+<p><br></p>
+<h2 id="1-JSONP"><a href="#1-JSONP" class="headerlink" title="1. JSONP"></a>1. JSONP</h2><p>JSONP跟JSON是什么关系？JSONP的实现原理是什么？我就不造轮子了，因为我也是看了别人的文章才理解的，直接推荐一篇<a href="http://kb.cnblogs.com/page/139725/" target="_blank" rel="noopener">讲得很清晰的博文</a>。了解后，就开始本地的代码测试吧。</p>
+<h4 id="本地模拟跨域"><a href="#本地模拟跨域" class="headerlink" title="本地模拟跨域"></a>本地模拟跨域</h4><p>本地要模拟跨域，一开始我是通过使用node启动一个地址为127.0.0.1:3000的server，然后本地在配一个frend.com（这个是nginx启动的一个静态资源server，端口是80，host配置中指向127.0.0.1）。然而这个在调试的过程中居然不跨域，普通的ajax请求居然通过了，这个我也不太理解。</p>
+<p>既然上面的情况不算跨域，那我只能起两个不同端口的server了。所以我在本地起了两个基于node的server，但端口分别为3000和3001，来实现跨域。以下就是通过两个端口不一样的服务来测试jsonp解决跨域的方案：</p>
+<ul>
+<li>server1: localhost:3001，作为响应端</li>
+</ul>
+<p>响应端代码：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/jsonp/res-code.png" alt="image"></p>
+<p>响应端启动log：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/jsonp/res-log.png" alt="image"></p>
+<ul>
+<li>server2: localhost:3000，作为请求端</li>
+</ul>
+<p>请求端代码：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/jsonp/req-code.png" alt="image"></p>
+<p>请求端启动log：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/jsonp/req-log.png" alt="image"></p>
+<ul>
+<li>浏览器访问localhost:3000，响应如下：</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/jsonp/req-browser.png" alt="image"></p>
+<p><a href="https://github.com/FrendEr/Cross-Origin" target="_blank" rel="noopener">☞下载JSONP例子源码☜</a></p>
+<h4 id="JSONP总结"><a href="#JSONP总结" class="headerlink" title="JSONP总结"></a>JSONP总结</h4><p>JSONP实现的原理很简单而且使用jquery的api会非常的方便，只需要配合后台定义好的接口。但是也有缺点，就是只支持GET的请求方式，如果需要使用POST或者传输大量的数据的时候，那我们就只能选择其他方式了，例如下面介绍的<a href="#CORS">CORS</a>。</p>
+<h2 id="2-CORS"><a href="#2-CORS" class="headerlink" title="2. CORS"></a>2. CORS</h2><p>CORS(Cross-Origin Resource Sharing)即跨域资源共享，也是一种实现跨域访问的方法。</p>
+<p>CORS的实现原理很简单，只需要在响应端的头信息配置一个<code>Access-Control-Allow-Origin</code>的响应信息即可。</p>
+<ul>
+<li><p>a) 没有配置<code>Access-Control-Allow-Origin</code>时，<a href="http://localhost:3000向http://localhost:3001发起ajax请求，跨域请求失败。" target="_blank" rel="noopener">http://localhost:3000向http://localhost:3001发起ajax请求，跨域请求失败。</a></p>
+</li>
+<li><p>b) 设置<code>Access-Control-Allow-Origin: http://localhost:3000</code>：</p>
+</li>
+</ul>
+<p>响应代码：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/res-code.png" alt="image"></p>
+<p>请求代码：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/req-code.png" alt="image"></p>
+<p>浏览器访问<a href="http://localhost:3000，响应如下：" target="_blank" rel="noopener">http://localhost:3000，响应如下：</a></p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png" alt="image"></p>
+<ul>
+<li>c) 设置<code>Access-Control-Allow-Origin: *</code>，注意这里的<code>*</code>是指所有来源都可以调用该接口：</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/res-code2.png" alt="image"></p>
+<p>请求代码：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/req-code.png" alt="image"></p>
+<p>浏览器访问<a href="http://localhost:3000，响应如下：" target="_blank" rel="noopener">http://localhost:3000，响应如下：</a></p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/res-browser.png" alt="image"></p>
+<p><a href="https://github.com/FrendEr/Cross-Origin" target="_blank" rel="noopener">☞下载CORS例子源码☜</a></p>
+<h4 id="CORS总结"><a href="#CORS总结" class="headerlink" title="CORS总结"></a>CORS总结</h4><p>CORS在使用起来非常方便，但也有缺点。</p>
+<ul>
+<li>① 兼容性，下图可见，对于需要兼容IE6-7的网站来说，这种方案还是存在着不满足需求的情况。但是对于现代浏览器，特别是在移动端可以放心使用。</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/cors/support.png" alt="image"></p>
+<ul>
+<li>② 安全性</li>
+</ul>
+<p>CORS提供了一种简易的跨域请求方案，但是并没有为安全访问提供足够的保障机制，例如上面<code>Access-Control-Allow-Origin: *</code>的情况，所有使用者都可以请求改接口，这给服务端带来了巨大的安全隐患。如果需要保障安全，请参考<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="noopener">OAuth2</a>。</p>
+<h2 id="3-postMessage"><a href="#3-postMessage" class="headerlink" title="3. postMessage"></a>3. postMessage</h2><p>postMessage是html5引入的message的API，可以更加方便、有效、安全的解决iframe嵌套跨域问题。详情见<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage" target="_blank" rel="noopener">postMessage使用文档 - MDN</a>。</p>
+<ul>
+<li>主页面</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/postMessage/parent-code.png" alt="image"></p>
+<ul>
+<li>iframe页面</li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/postMessage/iframe-code.png" alt="image"></p>
+<ul>
+<li>浏览器访问<a href="http://localhost:3000，响应如下：" target="_blank" rel="noopener">http://localhost:3000，响应如下：</a></li>
+</ul>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/postMessage/browser.png" alt="image"></p>
+<p><a href="https://github.com/FrendEr/Cross-Origin" target="_blank" rel="noopener">☞下载postMessage例子源码☜</a></p>
+<h2 id="postMessage总结"><a href="#postMessage总结" class="headerlink" title="postMessage总结"></a>postMessage总结</h2><p>postMessage使用非常简单，但是在浏览器支持上对于IE6-7存在不足，如下图：</p>
+<p><img src="https://frender.github.io/blog/images/post/cross-origin/postMessage/support.png" alt="image"></p>
+<p>但是现代浏览器对于使用postMessage还是非常有效的，特别是在移动端。</p>
+
+  </article>
+</div>
+
+
+    
+
+
+
+
+</div>
+
+<div class="footer-wrapper container">
+  <footer class="footer clearfix">
+    <div class="clearfix">
+    <a href="http://ondouble.click" class="footer-logo">
+      <i class="fa fa-github"></i>
+    </a>
+    <ul class="footer-social-link">
+      <li>© 2019 FrendEr</li>
+      <li><a href="http://ondouble.click">Home</a></li>
+      
+      <li><a href="https://github.com/FrendEr">Github</a></li>
+      
+    </ul>
+    <div class="footer-theme-info">
+      Theme <a href="//github.com/sabrinaluo/hexo-theme-replica">Replica</a>
+      by <a href="//github.com/sabrinaluo">Hiitea</a> ❤ Powered by Hexo
+    </div>
+    </div>
+    
+  </footer>
+</div>
+
+
+
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
