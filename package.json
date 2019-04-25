@@ -1,6 +1,9 @@
 {
   "name": "hexo-site",
   "version": "0.0.0",
+  "scripts": {
+    "deploy": "pm2 start server.js" 
+  },
   "private": true,
   "hexo": {
     "version": "3.8.0"
